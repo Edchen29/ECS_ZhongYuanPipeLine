@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" ReportInfo.Created="06/03/2016 17:38:33" ReportInfo.Modified="08/30/2018 10:00:41" ReportInfo.CreatorVersion="2016.1.0.0">
+  <Dictionary>
+    <Parameter Name="Barcode" DataType="System.String"/>
+  </Dictionary>
+  <ReportPage Name="Page1" PaperWidth="90" PaperHeight="60" LeftMargin="0" TopMargin="0" RightMargin="0" BottomMargin="0" FirstPageSource="4" OtherPagesSource="4">
+    <DataBand Name="Data1" Width="340.2" Height="226.8">
+      <BarcodeObject Name="Barcode1" Left="18.9" Top="47.25" Width="126.25" Height="126.25" Angle="90" Expression="[Barcode]" Text="k22222" Barcode="Code128" Barcode.AutoEncode="true"/>
+      <BarcodeObject Name="Barcode2" Left="179.55" Top="47.25" Width="126.25" Height="126.25" Angle="90" Expression="[Barcode]" Text="k22222" Barcode="Code128" Barcode.AutoEncode="true"/>
+    </DataBand>
+  </ReportPage>
+</Report>

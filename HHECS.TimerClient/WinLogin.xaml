@@ -1,0 +1,38 @@
+﻿<mah:MetroWindow
+    xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+         x:Class="HHECS.TimerClient.WinLogin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"       
+        Title="华恒ECS系统登录" Height="445.694" Width="505.024" x:Name="wbase" ResizeMode="NoResize">
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                <GradientStop Color="#FF7B7BF4" Offset="1"/>
+                <GradientStop Color="White" Offset="0.115"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20*"/>
+            <ColumnDefinition Width="60*"/>
+            <ColumnDefinition Width="20*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50*"></RowDefinition>
+            <RowDefinition Height="13*"></RowDefinition>
+            <RowDefinition Height="13*"></RowDefinition>
+            <RowDefinition Height="20*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="22.8,22,0,0" Grid.Row="1" TextWrapping="Wrap" Text="用户名：" VerticalAlignment="Top" FontSize="20"/>
+        <TextBox x:Name="txt_UserName" Grid.Column="1" HorizontalAlignment="Left" Height="30" Margin="102.8,21,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="154" FontSize="20" TabIndex="1" CaretBrush="Red"/>
+        <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="39.8,18.2,0,0" Grid.Row="2" TextWrapping="Wrap" Text="密码：" VerticalAlignment="Top" FontSize="20"  Width="62" />
+        <Button Visibility="Hidden" Content="登录" Grid.Column="1" HorizontalAlignment="Left" Margin="96.8,15.4,0,0" Grid.Row="3" VerticalAlignment="Top" Width="75" Click="Button_Click" TabIndex="4"/>
+        <Button Content="取消" Grid.Column="1" HorizontalAlignment="Left" Margin="181.8,15.4,0,0" Grid.Row="3" VerticalAlignment="Top" Width="75" Background="#FFC700FF" Click="Button_Click"  TabIndex="5"/>
+        <TextBlock Visibility="Hidden" Grid.Column="1" TextWrapping="Wrap" Text="华恒WCS系统登录" FontSize="48" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="22.8,13,31.4,13" Width="245"/>
+        <PasswordBox x:Name="Password" Grid.Column="1" HorizontalAlignment="Left" Margin="102.8,13.2,0,0" Grid.Row="2" VerticalAlignment="Top" Width="154" FontSize="20" TabIndex="2" CaretBrush="Red"/>
+        <Button x:Name="Btn_Login" Click="Btn_Login_Click"  Content="验证登录" HorizontalAlignment="Left" Margin="83.8,15.4,0,0" Grid.Row="3" VerticalAlignment="Top" Width="88" TabIndex="3" Grid.Column="1"  IsDefault="True"/>
+        <Image x:Name="image_logo" Grid.Column="1" HorizontalAlignment="Left" Height="81.653" Margin="21.795,74.562,0,0" VerticalAlignment="Top" Width="267.619" Source="Content/Image/huaheng2.png" OpacityMask="{x:Null}"/>
+    </Grid>
+</mah:MetroWindow>

@@ -1,0 +1,225 @@
+﻿<Window
+    x:Class="HH_TL.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:attached="clr-namespace:DMSkin.Attached;assembly=DMSkin"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:dmskin="clr-namespace:DMSkin;assembly=DMSkin"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Width="1920"
+    ResizeMode="CanResizeWithGrip"
+    Height="1080"
+    mc:Ignorable="d"
+    Title="华恒套料计算工具V2.2" Loaded="Window_Loaded">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="239*"></ColumnDefinition>
+            <ColumnDefinition Width="479*"></ColumnDefinition>
+            <ColumnDefinition Width="239*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition Height="80"></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="20"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Menu Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" FontSize="15" Background="Transparent" Margin="0,0,-0.6,0">
+            <MenuItem Header="文件">
+                <MenuItem Header="退出" Click="MenuItem_Click_Exit"  ></MenuItem>
+            </MenuItem>
+            <MenuItem Header="设置">
+                <MenuItem Header="损耗率" Click="MenuItem_Click_Sun"  ></MenuItem>
+            </MenuItem>
+            <MenuItem Header="帮助">
+                <MenuItem Header="关于我们" Click="MenuItem_Click_About"></MenuItem>
+            </MenuItem>
+        </Menu>
+        <TabControl Grid.Column="0" Grid.Row="2" Margin="0,0,0.4,0.2">
+            <TabItem Header="原材料尺寸">
+                <Grid>
+                    <DataGrid Name="inputgrid"
+                              Margin="2" FontSize="12" AutoGenerateColumns="False" CanUserAddRows="False" CanUserSortColumns ="False"
+                              HeadersVisibility="Column" 
+                              HorizontalGridLinesBrush ="Gainsboro" VerticalGridLinesBrush="Gainsboro"
+                              BeginningEdit="Materialgrid_CellEditEnding" >
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="序号" Binding="{Binding id}" IsReadOnly="True" />
+                            <DataGridTextColumn Header="外径" Binding="{Binding WaiJing}" IsReadOnly="True" />
+                            <DataGridTextColumn Header="壁厚" Binding="{Binding BiHou}" IsReadOnly="True"/>
+                            <DataGridTextColumn Header="材质" Binding="{Binding CaiZhi}" IsReadOnly="True"/>
+                            <DataGridTextColumn Header="等级" Binding="{Binding Dengji}" IsReadOnly="True"/>
+                            <DataGridTextColumn Header="*长度(mm)" Binding="{Binding length, StringFormat='#'}" IsReadOnly="True"/>
+                            <DataGridTextColumn Header="炉批号" Binding="{Binding LuPiHao}" IsReadOnly="True"/>
+                            <DataGridTextColumn Header="物料号" Binding="{Binding WuLiaoHao}" IsReadOnly="True"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+        </TabControl>
+        <GridSplitter Height="3" Grid.Row="2" Grid.Column="0" Background="Gray" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Margin="0,0,0.4,0.2"/>
+        <TabControl Grid.Column="0" Grid.Row="2" Margin="0,455,0.4,0.4" Grid.RowSpan="2">
+            <TabItem Header="下料尺寸">
+                <Grid>
+                    <DataGrid Margin="2" FontSize="12"  Name="outputgrid"  AutoGenerateColumns="False" 
+                              CanUserAddRows="False" HeadersVisibility="Column" CanUserSortColumns ="False"
+                              HorizontalGridLinesBrush ="Gainsboro" VerticalGridLinesBrush="Gainsboro"
+                              BeginningEdit="Productgrid_CellEditEnding">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="序号" Binding="{Binding id}" IsReadOnly="True" />
+                            <DataGridTextColumn Header="外径" Binding="{Binding WaiJing}" IsReadOnly="True" />
+                            <DataGridTextColumn Header="壁厚" Binding="{Binding BiHou}" IsReadOnly="True"/>
+                            <DataGridTextColumn Header="材质" Binding="{Binding CaiZhi}" IsReadOnly="True"/>
+                            <DataGridTextColumn Header="等级" Binding="{Binding Dengji}" IsReadOnly="True"/>
+                            <DataGridTextColumn Header="切断长*(mm)" Binding="{Binding length, StringFormat='#'}" IsReadOnly="True"/>
+                            <DataGridTextColumn Header="管件编号" Binding="{Binding GuanJianBianHao}" IsReadOnly="True"/>
+                            <DataGridTextColumn Header="项目名称" Binding="{Binding XiangMuMingCheng}" IsReadOnly="True"/>
+                            <DataGridTextColumn Header="下料编号" Binding="{Binding XiaLiaoBianHao}" IsReadOnly="True"/>
+                            <DataGridTextColumn Header="图纸页码" Binding="{Binding TuZhi}" IsReadOnly="True"/>
+                            <DataGridTextColumn Header="首端坡口形式" Binding="{Binding ShouDuanPoKou}" IsReadOnly="True"/>
+                            <DataGridTextColumn Header="末端坡口形式" Binding="{Binding MoDuanPoKou}" IsReadOnly="True"/>
+                            <DataGridTextColumn Header="首端内镗T值" Binding="{Binding ShouDuanNeiTang}" IsReadOnly="True"/>
+                            <DataGridTextColumn Header="末端内镗T值" Binding="{Binding MoDuanNeiTang}" IsReadOnly="True"/>
+                            <DataGridTextColumn Header="物料编码" Binding="{Binding WuLiaoBianMa}" IsReadOnly="True"/>
+                            <DataGridTextColumn Header="流向" Binding="{Binding LiuXiang}" IsReadOnly="True"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+
+        </TabControl>
+        <GridSplitter Width="3" Grid.Row="2" Grid.RowSpan="2" Grid.Column="0" Background="Gray"  HorizontalAlignment="Right" Margin="0,0,0.4,0.4"/>
+        <TabControl Grid.Row="2" Grid.RowSpan="2" Grid.ColumnSpan="2" Margin="478,0,0,0.4">
+            <TabItem Header="切割方案">
+                <Grid>
+                    <!--主表-->
+                    <DataGrid x:Name="grid1" FontSize="12" AutoGenerateColumns="False" 
+                              CanUserAddRows="False" HeadersVisibility="Column" CanUserSortColumns ="False"
+                              ColumnWidth="*" RowHeaderWidth="0" RowDetailsVisibilityMode="Visible">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="原材料序号" Binding="{Binding material.id}" IsReadOnly="True"/>
+                            <DataGridTextColumn Header="外径" Binding="{Binding material.WaiJing}"  IsReadOnly="True" />
+                            <DataGridTextColumn Header="壁厚" Binding="{Binding material.BiHou}" IsReadOnly="True" />
+                            <DataGridTextColumn Header="材质" Binding="{Binding material.CaiZhi}" IsReadOnly="True" />
+                            <DataGridTextColumn Header="等级" Binding="{Binding material.Dengji}" IsReadOnly="True" />
+                            <DataGridTextColumn Header="*长度(mm)" Binding="{Binding material.length, StringFormat='#'}" IsReadOnly="True" />
+                            <DataGridTextColumn Header="炉批号" Binding="{Binding material.LuPiHao}" IsReadOnly="True"/>
+                            <DataGridTextColumn Header="物料号" Binding="{Binding material.WuLiaoHao}" IsReadOnly="True"/>
+                            <DataGridTextColumn Header="利用率%" Binding="{Binding Percentage,StringFormat={}{0:P1}}" IsReadOnly="True"/>
+                        </DataGrid.Columns>
+                        <DataGrid.RowDetailsTemplate>
+                            <DataTemplate>
+                                <DataGrid  ItemsSource="{Binding productList}" AutoGenerateColumns="False" Margin="30,20,0,20" Width="800" RowBackground="LightGray">
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="序号" Binding="{Binding id}" IsReadOnly="True" />
+                                        <DataGridTextColumn Header="外径" Binding="{Binding WaiJing}" IsReadOnly="True" />
+                                        <DataGridTextColumn Header="壁厚" Binding="{Binding BiHou}" IsReadOnly="True"/>
+                                        <DataGridTextColumn Header="材质" Binding="{Binding CaiZhi}" IsReadOnly="True"/>
+                                        <DataGridTextColumn Header="等级" Binding="{Binding Dengji}" IsReadOnly="True"/>
+                                        <DataGridTextColumn Header="切断长*(mm)" Binding="{Binding length, StringFormat='#'}" IsReadOnly="True"/>
+                                        <DataGridTextColumn Header="管件编号" Binding="{Binding GuanJianBianHao}" IsReadOnly="True"/>
+                                        <DataGridTextColumn Header="项目名称" Binding="{Binding XiangMuMingCheng}" IsReadOnly="True"/>
+                                        <DataGridTextColumn Header="下料编号" Binding="{Binding XiaLiaoBianHao}" IsReadOnly="True"/>
+                                        <DataGridTextColumn Header="图纸页码" Binding="{Binding TuZhi}" IsReadOnly="True"/>
+                                        <DataGridTextColumn Header="首端坡口形式" Binding="{Binding ShouDuanPoKou}" IsReadOnly="True"/>
+                                        <DataGridTextColumn Header="末端坡口形式" Binding="{Binding MoDuanPoKou}" IsReadOnly="True"/>
+                                        <DataGridTextColumn Header="首端内镗T值" Binding="{Binding ShouDuanNeiTang}" IsReadOnly="True"/>
+                                        <DataGridTextColumn Header="末端内镗T值" Binding="{Binding MoDuanNeiTang}" IsReadOnly="True"/>
+                                        <DataGridTextColumn Header="物料编码" Binding="{Binding WuLiaoBianMa}" IsReadOnly="True"/>
+                                        <DataGridTextColumn Header="流向" Binding="{Binding LiuXiang}" IsReadOnly="True"/>
+                                    </DataGrid.Columns>
+                                </DataGrid>
+
+                            </DataTemplate>
+                        </DataGrid.RowDetailsTemplate>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+        </TabControl>
+        <GridSplitter Width="3" Grid.Row="2" Grid.RowSpan="2" Grid.Column="1" Background="Gray"  HorizontalAlignment="Right" Margin="0,0,0,0.4"/>
+        <Grid Grid.Row="1" Grid.Column="2" Margin="0,0,-0.6,0">
+            <TextBlock Height="Auto"
+                       Margin="10,0,10,48"
+                       Name="tbDateText"
+                       Foreground="DarkGray"
+                       FontWeight="Bold"
+                       FontFamily="Arial"
+                       FontSize="15" 
+                       TextAlignment="Right"/>
+            <TextBlock Height="Auto"
+                       Margin="10,48,10,0"
+                       Name="tbSHText"
+                       Foreground="DarkGray"
+                       FontWeight="Bold"
+                       FontFamily="Arial"
+                       FontSize="15"
+                       TextAlignment="Right"/>
+        </Grid>
+        <TabControl Grid.Column="2" Grid.Row="2" Margin="0,0,-0.6,0.2">
+            <TabItem Header="剩余原材料尺寸">
+                <Grid>
+                    <DataGrid Margin="2" FontSize="12"  Name="inputgrid1"  AutoGenerateColumns="False" 
+                              CanUserAddRows="False" HeadersVisibility="Column" CanUserSortColumns ="False"
+                              HorizontalGridLinesBrush ="Gainsboro" VerticalGridLinesBrush="Gainsboro"
+                              BeginningEdit="Materialgrid_CellEditEnding">
+
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="序号" Binding="{Binding id}" IsReadOnly="True" />
+                            <DataGridTextColumn Header="外径" Binding="{Binding WaiJing}" IsReadOnly="True" />
+                            <DataGridTextColumn Header="壁厚" Binding="{Binding BiHou}" IsReadOnly="True"/>
+                            <DataGridTextColumn Header="材质" Binding="{Binding CaiZhi}" IsReadOnly="True"/>
+                            <DataGridTextColumn Header="等级" Binding="{Binding Dengji}" IsReadOnly="True"/>
+                            <DataGridTextColumn Header="*长度(mm)" Binding="{Binding length, StringFormat='#'}" IsReadOnly="True"/>
+                            <DataGridTextColumn Header="炉批号" Binding="{Binding LuPiHao}" IsReadOnly="True"/>
+                            <DataGridTextColumn Header="物料号" Binding="{Binding WuLiaoHao}" IsReadOnly="True"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+        </TabControl>
+        <GridSplitter Height="3" Grid.Row="2" Grid.Column="2" Background="Gray" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Margin="0,0,-0.6,0.2"/>
+        <TabControl Grid.Column="2" Grid.Row="2" Margin="0,455,-0.6,0.4" Grid.RowSpan="2">
+            <TabItem Header="未切割的下料尺寸">
+                <Grid>
+                    <DataGrid Margin="2" FontSize="12"  Name="outputgrid1"  AutoGenerateColumns="False" 
+                              CanUserAddRows="False" HeadersVisibility="Column" CanUserSortColumns ="False"
+                              HorizontalGridLinesBrush ="Gainsboro" VerticalGridLinesBrush="Gainsboro"
+                              BeginningEdit="Productgrid_CellEditEnding">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="序号" Binding="{Binding id}" IsReadOnly="True" />
+                            <DataGridTextColumn Header="外径" Binding="{Binding WaiJing}" IsReadOnly="True" />
+                            <DataGridTextColumn Header="壁厚" Binding="{Binding BiHou}" IsReadOnly="True"/>
+                            <DataGridTextColumn Header="材质" Binding="{Binding CaiZhi}" IsReadOnly="True"/>
+                            <DataGridTextColumn Header="等级" Binding="{Binding Dengji}" IsReadOnly="True"/>
+                            <DataGridTextColumn Header="切断长*(mm)" Binding="{Binding length, StringFormat='#'}" IsReadOnly="True"/>
+                            <DataGridTextColumn Header="管件编号" Binding="{Binding GuanJianBianHao}" IsReadOnly="True"/>
+                            <DataGridTextColumn Header="项目名称" Binding="{Binding XiangMuMingCheng}" IsReadOnly="True"/>
+                            <DataGridTextColumn Header="下料编号" Binding="{Binding XiaLiaoBianHao}" IsReadOnly="True"/>
+                            <DataGridTextColumn Header="图纸页码" Binding="{Binding TuZhi}" IsReadOnly="True"/>
+                            <DataGridTextColumn Header="首端坡口形式" Binding="{Binding ShouDuanPoKou}" IsReadOnly="True"/>
+                            <DataGridTextColumn Header="末端坡口形式" Binding="{Binding MoDuanPoKou}" IsReadOnly="True"/>
+                            <DataGridTextColumn Header="首端内镗T值" Binding="{Binding ShouDuanNeiTang}" IsReadOnly="True"/>
+                            <DataGridTextColumn Header="末端内镗T值" Binding="{Binding MoDuanNeiTang}" IsReadOnly="True"/>
+                            <DataGridTextColumn Header="物料编码" Binding="{Binding WuLiaoBianMa}" IsReadOnly="True"/>
+                            <DataGridTextColumn Header="流向" Binding="{Binding LiuXiang}" IsReadOnly="True"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+
+        </TabControl>
+        <Button Style="{StaticResource AduButton}" Foreground="Black"  Content="全部清空" HorizontalAlignment="Left" Margin="27,19,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75" Height="40" Click="ClearAll" ></Button>
+
+        <Button Style="{StaticResource AduButton}" Foreground="Black" Content="计算" HorizontalAlignment="Left" Margin="158,19,0,0" Grid.Row="1" VerticalAlignment="Top" Width="74" Height="40" Click="Button_Calculation"/>
+        <Button Style="{StaticResource AduButton}" Foreground="Black" Content="导入Excel原材料" HorizontalAlignment="Left" VerticalAlignment="Top" Width="122" Height="17" Grid.Row="1"  Grid.Column="1" Margin="16.6,18,0,0" Click="Button_Click_Me" Visibility="Hidden" />
+        <Button Style="{StaticResource AduButton}" Foreground="Black" Content="导入数据库原材料" HorizontalAlignment="Left" VerticalAlignment="Top" Width="130" Height="40" Grid.Column="1" Grid.Row="1" Margin="273.6,18,0,0" Click="Button_Click_GetDB"/>
+        <Button Style="{StaticResource AduButton}" Foreground="Black" Content="导入Excel工单" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="108" Height="39" Grid.Column="1" Grid.Row="1" Margin="151.6,0,0,22" Click="Button_Click_Pro" />
+        <Button Style="{StaticResource AduButton}" Foreground="Black" Content="导入数据库工单" HorizontalAlignment="Left" VerticalAlignment="Top" Width="125" Height="40" Grid.Column="1" Grid.Row="1" Margin="416.6,18,0,0" Click="Button_Click_GetOrder"/>
+        <Button Style="{StaticResource AduButton}" Foreground="Black" Content="保存切割方案" HorizontalAlignment="Left" VerticalAlignment="Top" Width="104" Height="40" Grid.Column="1" Grid.Row="1" Margin="558.6,18,0,0" Click="Button_Click_Out" />
+        <Button Style="{StaticResource AduButton}" Foreground="Black" Content="导出剩余原材料" HorizontalAlignment="Left" VerticalAlignment="Top" Width="112" Height="40" Grid.Column="1" Grid.Row="1" Margin="687.6,18,0,0" Click="Button_Click_Out1" Visibility="Hidden" />
+        <Button Style="{StaticResource AduButton}" Foreground="Black" Content="导出未切割下料" HorizontalAlignment="Left" VerticalAlignment="Top" Width="114" Height="40" Grid.Column="1" Grid.Row="1" Margin="816.6,18,0,0" Click="Button_Click_Out2" Visibility="Hidden" />
+        <Button Style="{StaticResource AduButton}" Foreground="Black" Content="导入外部方案" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Height="40" Grid.Column="1" Grid.Row="1" Margin="634.6,19,0,0" Click="Button_Click_SendToPLC"  Visibility="Hidden"/>
+
+
+    </Grid>
+</Window>

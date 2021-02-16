@@ -1,0 +1,37 @@
+﻿<Window x:Class="HH_TL.OutPage"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HH_TL"
+        mc:Ignorable="d"
+        Title="OutPage" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="66"></RowDefinition>
+        </Grid.RowDefinitions>
+        <!--主表-->
+        <DataGrid x:Name="grid1" FontSize="12" AutoGenerateColumns="False" 
+                              CanUserAddRows="False" HeadersVisibility="Column" CanUserSortColumns ="False"
+                              ColumnWidth="*" RowHeaderWidth="0" RowDetailsVisibilityMode="Visible" Grid.Row="0">
+            <DataGrid.Columns>
+                <DataGridCheckBoxColumn Header="原材料序号" Binding="{Binding ischeck}"/>
+                <DataGridTextColumn Header="原材料序号" Binding="{Binding material.id}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="外径" Binding="{Binding material.WaiJing}"  IsReadOnly="True" />
+                <DataGridTextColumn Header="壁厚" Binding="{Binding material.BiHou}" IsReadOnly="True" />
+                <DataGridTextColumn Header="材质" Binding="{Binding material.CaiZhi}" IsReadOnly="True" />
+                <DataGridTextColumn Header="等级" Binding="{Binding material.Dengji}" IsReadOnly="True" />
+                <DataGridTextColumn Header="*长度(mm)" Binding="{Binding material.length, StringFormat='#'}" IsReadOnly="True" />
+                <DataGridTextColumn Header="炉批号" Binding="{Binding material.LuPiHao}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="物料号" Binding="{Binding material.WuLiaoHao}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="利用率%" Binding="{Binding Percentage,StringFormat={}{0:P1}}" IsReadOnly="True"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Style="{StaticResource AduButton}" Foreground="Black" Content="保存到数据库" HorizontalAlignment="Left" Margin="245,16.4,0,0" Grid.Row="1" VerticalAlignment="Top" Width="135" Height="40" Click="Button_Send_DB"/>
+        <Button Style="{StaticResource AduButton}" Foreground="Black" Content="导出用户数据" HorizontalAlignment="Left" Margin="434,16.4,0,0" Grid.Row="1" VerticalAlignment="Top" Width="115" Height="40" Click="Button_OutPut_User"/>
+        <Button Style="{StaticResource AduButton}" Foreground="Black" Content="导出PLC数据" HorizontalAlignment="Left" Margin="525,16.4,0,0" Grid.Row="1" VerticalAlignment="Top" Width="115" Height="40" Click="Button_OutPut_Plc" Visibility="Hidden"/>
+        <Button Style="{StaticResource AduButton}" Foreground="Black" Content="发送数据至PLC" HorizontalAlignment="Left" Margin="660,16.4,0,0" Grid.Row="1" VerticalAlignment="Top" Width="115" Height="40" Click="Button_Send_Plc" Visibility="Hidden"/>
+
+    </Grid>
+</Window>

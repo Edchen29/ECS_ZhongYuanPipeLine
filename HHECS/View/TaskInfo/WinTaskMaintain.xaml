@@ -1,0 +1,113 @@
+﻿<win:BaseWindow
+    xmlns:win="clr-namespace:HHECS.View.Win"
+    x:Class="HHECS.View.TaskInfo.WinTaskMaintain"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HHECS.View.TaskInfo"
+        mc:Ignorable="d"
+        Title="任务维护" Height="450" Width="800" ResizeMode="NoResize" SizeToContent="WidthAndHeight" Loaded="BaseWindow_Loaded">
+    <Window.Resources>
+        <Style TargetType="StackPanel">
+            <Setter Property="Orientation" Value="Horizontal"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+            <Setter Property="Margin" Value="0,5,0,5"></Setter>
+        </Style>
+        <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}">
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="Margin" Value="10,0,0,0"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+        <Style TargetType="TextBox" BasedOn="{StaticResource BaseTextBoxStyle}">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+        <Style TargetType="Button" BasedOn="{StaticResource BaseButtonStyle}">
+            <Setter Property="Margin" Value="10,0,0,0"/>
+        </Style>
+        <Style TargetType="ComboBox" BasedOn="{StaticResource BaseComboBoxStyle}">
+            <Setter Property="MinWidth" Value="100"></Setter>
+            <Setter Property="Height" Value="35"></Setter>
+        </Style>
+    </Window.Resources>
+    <Grid x:Name="Grid1">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <ToolBar Grid.Row="0">
+            <TextBlock>当前任务号：</TextBlock>
+            <TextBlock Text="{Binding Id}"></TextBlock>
+            <Button x:Name="BtnRefresh" Click="BtnRefresh_Click">重置所有</Button>
+        </ToolBar>
+        <!--<GroupBox Header="任务产品维护" Grid.Row="1" Visibility="Hidden">
+            <StackPanel >
+                <TextBlock>产品ID：</TextBlock>
+                <ComboBox x:Name="Cbx_ProductId" SelectedValue="{Binding ProductId}"></ComboBox>
+                <Button x:Name="BtnEditProductId" Click="BtnEditProductId_Click">修改</Button>
+                <TextBlock>序列号：</TextBlock>
+                <TextBox x:Name="Txt_SerialNumber" Text="{Binding SerialNumber}"></TextBox>
+                <Button x:Name="BtnEditSerialNumber" Click="BtnEditSerialNumber_Click">修改</Button>
+            </StackPanel>
+        </GroupBox>
+        <GroupBox Header="工序维护" Grid.Row="2" Visibility="Hidden">
+            <StackPanel>
+                <TextBlock>当前工序：</TextBlock>
+                <ComboBox x:Name="Cbx_StepId" SelectedValue="{Binding StepIdVM}" ></ComboBox>
+                <Button x:Name="BtnEditStepIdVM" Click="BtnEditStepIdVM_Click">修改</Button>
+                <TextBlock>当前工位：</TextBlock>
+                <ComboBox x:Name="Cbx_StationId" SelectedValue="{Binding StationIdVM}"></ComboBox>
+                <Button x:Name="BtnEditStationIdVM" Click="BtnEditStationIdVM_Click">修改</Button>
+
+            </StackPanel>
+        </GroupBox>-->
+        <GroupBox Header="库位维护" Grid.Row="3">
+            <StackPanel>
+
+                <TextBlock>层：</TextBlock>
+                <!--<TextBox x:Name="Txt_WCSLayer" Text="{Binding WCSLayer}"></TextBox>-->
+                <ComboBox x:Name="Cbx_WCSLayer"></ComboBox>
+                
+                <!--<Button x:Name="BtnEditWCSLayer" Click="BtnEditWCSLayer_Click">修改</Button>-->
+                <TextBlock>列：</TextBlock>
+                <!--<TextBox x:Name="Txt_WCSLine" Text="{Binding WCSLine}" ></TextBox>-->
+                <ComboBox x:Name="Cbx_WCSLine" ></ComboBox>
+                <Button x:Name="BtnEditWCSLine" Click="BtnEditWCSLine_Click">修改</Button>
+
+            </StackPanel>
+        </GroupBox>
+        <!--<GroupBox Header="清零维护" Grid.Row="3">
+            <StackPanel>
+                <TextBlock>下道工序：</TextBlock>
+                <TextBlock x:Name="Txt_NextStepIdVM" Text="{Binding NextStepId}" ></TextBlock>
+                <Button x:Name="BtnEditNextStepIdVM" Click="BtnEditNextStepIdVM_Click">清零</Button>
+
+                <TextBlock>下道工位：</TextBlock>
+                <TextBlock x:Name="Txt_NextStationIdVM" Text="{Binding NextStationId}"></TextBlock>
+                <Button x:Name="BtnEditNextStationIdVM" Click="BtnEditNextStationIdVM_Click">清零</Button>
+            </StackPanel>
+        </GroupBox>-->
+        <!--<GroupBox Header="出入口维护" Grid.Row="4">
+            <StackPanel>
+                <TextBlock>入口维护：</TextBlock>
+                <ComboBox x:Name="CbxInPort" SelectedValue="{Binding FromPort}"></ComboBox>
+                <Button x:Name="BtnEditFromPort" Click="BtnEditFromPort_Click">修改</Button>
+                <TextBlock>出口维护：</TextBlock>
+                <ComboBox x:Name="CbxOutPort" SelectedValue="{Binding ToPort}"></ComboBox>
+                <Button x:Name="BtnEditToPort" Click="BtnEditToPort_Click">修改</Button>
+            </StackPanel>
+        </GroupBox>-->
+        <GroupBox Header="状态维护" Grid.Row="5">
+            <StackPanel>
+                <TextBlock>任务状态：</TextBlock>
+                <ComboBox x:Name="CbxStatus" SelectedValue="{Binding status}"></ComboBox>
+                <Button x:Name="BtnEditStatus" Click="BtnEditStatus_Click">修改</Button>
+            </StackPanel>
+        </GroupBox>
+    </Grid>
+</win:BaseWindow>

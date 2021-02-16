@@ -1,0 +1,82 @@
+﻿<win:BaseWindow
+    xmlns:win="clr-namespace:HHECS.View.Win"
+    x:Class="HHECS.View.WinPortStockerStationAddOrEdit"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HHECS.View"
+    xmlns:convert1="clr-namespace:HHECS.Model.ValueConverter;assembly=HHECS.Model"
+    xmlns:rules="clr-namespace:HHECS.Model.Rules;assembly=HHECS.Model"
+    mc:Ignorable="d"
+        Title="站台映射关系维护" Height="350" Width="300.497" ResizeMode="NoResize" SizeToContent="WidthAndHeight">
+    <Window.Resources>
+        <Style TargetType="StackPanel">
+            <Setter Property="Orientation" Value="Horizontal"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+            <Setter Property="VerticalAlignment" Value="Center"></Setter>
+            <Setter Property="Margin" Value="5,5,5,5"></Setter>
+        </Style>
+        <Style TargetType="TextBox" BasedOn="{StaticResource BaseTextBoxStyle}">
+            <Setter Property="MinWidth" Value="100"></Setter>
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="true">
+                    <Setter Property="ToolTip"
+                    Value="{Binding RelativeSource={x:Static RelativeSource.Self},
+                Path=(Validation.Errors)[0].ErrorContent}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    <Grid x:Name="GridMain">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Row="0" Grid.Column="0">
+            <TextBlock>目标区域：</TextBlock>
+            <TextBox>
+                <TextBox.Text>
+                    <Binding Path="DestinationArea" NotifyOnValidationError="True">
+                        <!--<Binding.Converter>
+                            <convert1:StringToIntConverter></convert1:StringToIntConverter>
+                        </Binding.Converter>
+                        <Binding.ValidationRules>
+                            <rules:PositiveInterRule></rules:PositiveInterRule>
+                        </Binding.ValidationRules>-->
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+        </StackPanel>
+        <StackPanel Grid.Row="0" Grid.Column="1">
+            <TextBlock>从站台：</TextBlock>
+            <TextBox Text="{Binding PortCode}"></TextBox>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.Column="0">
+            <TextBlock>选取站台：</TextBlock>
+            <TextBox Text="{Binding StationCode}"></TextBox>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.Column="1">
+            <TextBlock>出入标记：</TextBlock>
+            <ComboBox x:Name="CbxInOut" SelectedValue="{Binding InOutFlag}" MinWidth="100"></ComboBox>
+        </StackPanel>
+        <StackPanel Grid.Row="2" Grid.Column="0">
+            <TextBlock>仓库：</TextBlock>
+            <ComboBox x:Name="CbxWarehouse" SelectedValue="{Binding WarehouseCode}" MinWidth="100"></ComboBox>
+        </StackPanel>
+        <StackPanel Grid.Row="2" Grid.Column="1">
+            <TextBlock>备注：</TextBlock>
+            <TextBox Text="{Binding Remark}"></TextBox>
+        </StackPanel>
+        <StackPanel Grid.Row="3" Grid.Column="1">
+            <Button x:Name="BtnComfrim" Click="BtnComfrim_Click" Margin="0,0,5,0">确定</Button>
+            <Button x:Name="BtnCancel" Click="BtnCancel_Click">取消</Button>
+        </StackPanel>
+    </Grid>
+</win:BaseWindow>

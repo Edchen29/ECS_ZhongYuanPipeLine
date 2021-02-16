@@ -1,0 +1,112 @@
+﻿<win:BaseWindow
+    xmlns:win="clr-namespace:HHECS.View.Win" x:Class="HHECS.View.EquipmentInfo.WinEquipmentTypeTemplateAddOrEdit"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HHECS.View.EquipmentInfo"
+        mc:Ignorable="d"
+    xmlns:useControl="clr-namespace:HHECS.Model.Controls;assembly=HHECS.Model"
+        Title="EquipmentTypeTemplateAddOrEdit" Height="380" Width="640">
+    <Window.Resources>
+        <Style TargetType="StackPanel">
+            <Setter Property="Orientation" Value="Horizontal"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+        <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+        <Style TargetType="TextBox" BasedOn="{StaticResource BaseTextBoxStyle}">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="MinWidth" Value="120"/>
+        </Style>
+        <Style TargetType="useControl:NumericBox">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Width" Value="300"/>
+        </Style>
+        <Style TargetType="ComboBox" BasedOn="{StaticResource BaseComboBoxStyle}">
+            <Setter Property="MinWidth" Value="10"/>
+            <Setter Property="Height" Value="15"/>
+        </Style>
+        <Style TargetType="Button" BasedOn="{StaticResource BaseButtonStyle}">
+            <Setter Property="Margin" Value="2"/>
+        </Style>
+    </Window.Resources>
+    <Grid x:Name="GridMain">
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+             <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Left">
+            <TextBlock>设备类型编码：</TextBlock>
+            <Label x:Name ="LabCode" Content="{Binding HeadCode}"></Label>
+            <TextBlock>设备类型名称：</TextBlock>
+            <Label x:Name ="LabName" Content="{Binding HeadName}"></Label>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.Column="0">
+            <TextBlock>设备类型属性编码：</TextBlock>
+            <TextBox x:Name ="TxtEquipmentTypeTemplateCode" Text="{Binding Code}"></TextBox>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.Column="1">
+            <TextBlock>设备类型属性名称：</TextBlock>
+            <TextBox x:Name="TxtEquipmentTypeTemplateName" Text="{Binding Name}"></TextBox>
+        </StackPanel>
+        <StackPanel Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2">
+            <TextBlock>设备类型属性描述：</TextBlock>
+            <TextBox x:Name="TxtEquipmentTypeTemplateDescription" Text="{Binding Description}" Width="320"></TextBox>
+        </StackPanel>
+        <StackPanel Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2">
+            <TextBlock>地址：</TextBlock>
+            <TextBox x:Name="TxtEquipmentTypeTemplateAddress" Text="{Binding Address}" Width="80"></TextBox>
+        </StackPanel>
+        <StackPanel Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2">
+            <TextBlock>偏移值：</TextBlock>
+            <TextBox x:Name="TxtEquipmentTypeTemplateOffset" Text="{Binding Offset}" Width="80"></TextBox>
+        </StackPanel>
+        <StackPanel Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2"/>
+        <StackPanel Grid.Row="2" Grid.Column="0">
+            <TextBlock>设备类型属性类型：</TextBlock>
+            <ComboBox x:Name="CbxEquipmentTypeTemplatePropType" SelectedValue="{Binding PropType}"></ComboBox>
+        </StackPanel>
+        <StackPanel Grid.Row="2" Grid.Column="1">
+            <TextBlock>设备类型属性数据类型：</TextBlock>
+            <ComboBox x:Name="CbxEquipmentTypeTemplateDataType" SelectedValue ="{Binding DataType}"></ComboBox>
+        </StackPanel>
+        <StackPanel Grid.Row="3" Grid.Column="0">
+            <TextBlock>是否监控属性：</TextBlock>
+            <CheckBox x:Name="TxtEquipmentTypeTemplateIsMonitor" IsChecked="{Binding IsMonitor}"></CheckBox>
+        </StackPanel>
+        <StackPanel Grid.Row="3" Grid.Column="1">
+            <TextBlock>监控比较值：</TextBlock>
+            <TextBox x:Name="TxtEquipmentTypeTemplateMonitorCompareValue" Text="{Binding MonitorCompareValue}"></TextBox>
+        </StackPanel>
+        <StackPanel Grid.Row="4" Grid.Column="0">
+            <TextBlock>监控正确输出：</TextBlock>
+            <TextBox x:Name="TxtEquipmentTypeTemplateMonitorNormal" Text="{Binding MonitorNormal}"></TextBox>
+        </StackPanel>
+        <StackPanel Grid.Row="4" Grid.Column="1">
+            <TextBlock>监控错误输出：</TextBlock>
+            <TextBox x:Name="TxtEquipmentTypeTemplateMonitorFailure" Text="{Binding MonitorFailure}"></TextBox>
+        </StackPanel>
+        <StackPanel HorizontalAlignment="Right" Grid.Row="7" Grid.ColumnSpan="2">
+            <Button x:Name="BtnNew" Click="BtnNew_Click">清空</Button>
+            <Button x:Name="BtnSave" Click="BtnSave_Click">保存</Button>
+            <Button x:Name="BtnCancel" Click="BtnCancel_Click">取消</Button>
+        </StackPanel>
+    </Grid>
+</win:BaseWindow>

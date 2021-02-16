@@ -1,0 +1,127 @@
+﻿<win:HideCloseWindow
+    xmlns:win="clr-namespace:HHECS.View.Win"
+    x:Class="HHECS.View.StepTraceTask.WinStepTrace"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HHECS.View.StepTraceTask"
+    xmlns:convert="clr-namespace:HHECS.Model.ValueConverter;assembly=HHECS.Model"
+    xmlns:control="clr-namespace:HHECS.Model.Controls;assembly=HHECS.Model"
+    mc:Ignorable="d"
+        Title="工序任务"  Height="550" Width="800">
+    <Window.Resources>
+        <convert:TaskStageFlagConverter x:Key="TaskStageFlagConverter"></convert:TaskStageFlagConverter>
+        <convert:CommitFlagConverter x:Key="CommitFlagConverter"></convert:CommitFlagConverter>
+        <Style TargetType="StackPanel">
+            <Setter Property="Orientation" Value="Horizontal"></Setter>
+            <Setter Property="VerticalAlignment" Value="Center"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+            <Setter Property="Margin" Value="5"></Setter>
+        </Style>
+        <Style TargetType="Button" BasedOn="{StaticResource BaseButtonStyle}">
+            <Setter Property="Margin" Value="5,0,0,0"></Setter>
+        </Style>
+        <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}">
+            <Setter Property="Foreground" Value="Black"/>
+        </Style>
+
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <!--<ColumnDefinition Width="Auto"/>-->
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0">
+            <ScrollViewer VerticalAlignment="Top">
+                <StackPanel Orientation="Vertical" VerticalAlignment="Top">
+                    <GroupBox Header="查询-操作">
+                        <StackPanel Orientation="Vertical" VerticalAlignment="Top">
+                            <StackPanel>
+                                <TextBlock  TextWrapping="Wrap" Text="任务号："  />
+                                <TextBox x:Name="txt_TaskNo" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                            </StackPanel>
+                            <!--<StackPanel>
+                                <TextBlock TextWrapping="Wrap" Text="托盘号："  />
+                                <TextBox x:Name="txt_Pallet" TextWrapping="Wrap"  Width="120"/>
+                            </StackPanel>-->
+                            <StackPanel>
+                                <TextBlock TextWrapping="Wrap" Text="任务状态：" />
+                                <ComboBox x:Name="cbx_TaskStatus"  Width="135" Height="50"/>
+                            </StackPanel>
+                            <StackPanel>
+                                <TextBlock  TextWrapping="Wrap" Text="开始时间：" />
+                                <DatePicker x:Name="beginTime"  Width="135"/>
+                            </StackPanel>
+                            <StackPanel>
+                                <TextBlock  Text="结束时间：" VerticalAlignment="Top" />
+                                <DatePicker x:Name="endTime" Width="135"/>
+                            </StackPanel>
+                            <StackPanel>
+                                <Button x:Name="btn_Query" Content="查询"  Width="75"  Click="btn_Query_Click" Tag="task:query"/>
+                                <Button x:Name="BtnAdd" Content="新增"  Width="75"   Tag="task:add"/>
+                            </StackPanel>
+                            <StackPanel>
+                                <Button x:Name="btn_Delete" Content="删除"  Width="75"   Tag="task:delete" />
+                                <Button x:Name="btn_SendToWCS" Content="下发"  Width="75"  Tag="task:assgin"/>
+                            </StackPanel>
+                            <StackPanel>
+                                <Button x:Name="BtnComplete" Background="Red"  Width="120" Tag="task:complete">强制完成</Button>
+                            </StackPanel>
+                            <StackPanel>
+                                <Button x:Name="BtnMaintain" Content="维护"  Width="120"></Button>
+
+                            </StackPanel>
+                        </StackPanel>
+                    </GroupBox>
+                </StackPanel>
+            </ScrollViewer>
+
+        </Grid>
+        <!--<GridSplitter Grid.Column="1" Width="5" Background="Gray" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"></GridSplitter>-->
+        <DockPanel x:Name="DPMain" Grid.Column="1">
+            <control:DataPager x:Name="page" DockPanel.Dock="Bottom" PageIndex="{Binding PageIndex,Mode=TwoWay}" PageSize="{Binding PageSize}" TotalCount="{Binding TotalCount}"
+                                   PageChanged="page_PageChanged"></control:DataPager>
+            <DataGrid x:Name="dgv_1" >
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="任务号" Binding="{Binding Id}"/>
+                    <DataGridTextColumn Header="工单号" Binding="{Binding WONumber}"/>
+                    <DataGridTextColumn Header="产品ID" Binding="{Binding ProductId}"/>
+                    <DataGridTextColumn Header="产品编码" Binding="{Binding ProductCode}"/>
+                    <DataGridTextColumn Header="序列号" Binding="{Binding SerialNumber}"/>
+                    <DataGridTextColumn Header="线体" Binding="{Binding LineId}"/>
+                    <DataGridTextColumn Header="当前工序" Binding="{Binding StepId}"/>
+                    <DataGridTextColumn Header="当前工位" Binding="{Binding StationId}"/>
+                    <DataGridTextColumn Header="下道工序" Binding="{Binding NextStepId}"/>
+                    <DataGridTextColumn Header="下道工位" Binding="{Binding NextStationId}"/>
+
+                    <DataGridTextColumn Header="任务状态" Binding="{Binding Status}"/>
+                    <DataGridTextColumn Header="桁车编码" Binding="{Binding SrmCode}"/>
+                    <DataGridTextColumn Header="进站时间" Binding="{Binding StationInTime}"/>
+                    <DataGridTextColumn Header="出站时间" Binding="{Binding StationOutTime}"/>
+                    <DataGridTextColumn Header="进线时间" Binding="{Binding LineInTime}"/>
+                    <DataGridTextColumn Header="出线时间" Binding="{Binding LineOutTime}"></DataGridTextColumn>
+                    <!--<DataGridTextColumn Header="是否取货错" Binding="{Binding IsForkError}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="是否重入" Binding="{Binding IsDoubleIn}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="重入分配库位" Binding="{Binding DoubleInLocationCode}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="任务重发" Binding="{Binding SendAgain}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="任务回传" Binding="{Binding CommitFlag,Converter={StaticResource CommitFlagConverter}}"></DataGridTextColumn>
+
+                    <DataGridTextColumn Header="长" Binding="{Binding ReqLength}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="宽" Binding="{Binding ReqWidth}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="高" Binding="{Binding ReqHeight}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="重" Binding="{Binding ReqWeight}"></DataGridTextColumn>
+
+                    <DataGridTextColumn Header="下发平台" Binding="{Binding Platform}"/>
+                    <DataGridTextColumn Header="仓库" Binding="{Binding WarehouseCode}"/>
+                    <DataGridTextColumn Header="创建人" Binding="{Binding CreatedBy}"/>
+                    <DataGridTextColumn Header="创建时间" Binding="{Binding Created}"/>
+                    <DataGridTextColumn Header="更新人" Binding="{Binding UpdatedBy}"/>
+                    <DataGridTextColumn Header="更新时间" Binding="{Binding Updated}"/>-->
+                </DataGrid.Columns>
+            </DataGrid>
+        </DockPanel>
+
+    </Grid>
+</win:HideCloseWindow>

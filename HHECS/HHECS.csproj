@@ -1,0 +1,804 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{6D6D0392-AC69-412B-A274-35E951585896}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>HHECS</RootNamespace>
+    <AssemblyName>HHECS</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Content\Image\favicon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.3.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
+      <HintPath>..\packages\BouncyCastle.1.8.3.1\lib\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
+    <Reference Include="ControlzEx, Version=3.0.2.4, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ControlzEx.3.0.2.4\lib\net45\ControlzEx.dll</HintPath>
+    </Reference>
+    <Reference Include="Dapper, Version=1.60.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dapper.1.60.6\lib\net451\Dapper.dll</HintPath>
+    </Reference>
+    <Reference Include="Dapper.SimpleCRUD, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dapper.SimpleCRUD.2.1.0\lib\net45\Dapper.SimpleCRUD.dll</HintPath>
+    </Reference>
+    <Reference Include="DMSkin, Version=3.0.0.1000, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DMSkin.3.0.0.1000\lib\net45\DMSkin.dll</HintPath>
+    </Reference>
+    <Reference Include="DMSkin.Core, Version=2.5.1.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DMSkin.Core.2.5.1.1\lib\net40\DMSkin.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DMSkin.WPF, Version=2.5.1.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DMSkin.WPF.2.5.1.1\lib\net40\DMSkin.WPF.dll</HintPath>
+    </Reference>
+    <Reference Include="FastReport, Version=1.6.17.0, Culture=neutral, PublicKeyToken=9e2f11070db1b41c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Content\FastReport\FastReport.dll</HintPath>
+    </Reference>
+    <Reference Include="FastReport.Bars, Version=1.6.17.0, Culture=neutral, PublicKeyToken=9e2f11070db1b41c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Content\FastReport\FastReport.Bars.dll</HintPath>
+    </Reference>
+    <Reference Include="FastReport.Editor, Version=1.6.17.0, Culture=neutral, PublicKeyToken=9e2f11070db1b41c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Content\FastReport\FastReport.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="FastReport.Install, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e2f11070db1b41c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Content\FastReport\FastReport.Install.dll</HintPath>
+    </Reference>
+    <Reference Include="FastReport.VSDesign, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e2f11070db1b41c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Content\FastReport\FastReport.VSDesign.dll</HintPath>
+    </Reference>
+    <Reference Include="FastReport.Web, Version=1.6.17.0, Culture=neutral, PublicKeyToken=9e2f11070db1b41c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Content\FastReport\FastReport.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Protobuf, Version=3.6.1.0, Culture=neutral, PublicKeyToken=a7d26565bac4d604, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Protobuf.3.6.1\lib\net45\Google.Protobuf.dll</HintPath>
+    </Reference>
+    <Reference Include="HandyControl, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\HandyControl.2.1.0\lib\net45\HandyControl.dll</HintPath>
+    </Reference>
+    <Reference Include="Interop.OPCAutomation">
+      <HintPath>..\HHECS.Model\PLCHelper\DLL\Interop.OPCAutomation.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="MahApps.Metro, Version=1.6.5.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MahApps.Metro.1.6.5\lib\net46\MahApps.Metro.dll</HintPath>
+    </Reference>
+    <Reference Include="MaterialDesignColors, Version=1.2.0.325, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MaterialDesignColors.1.2.0\lib\net45\MaterialDesignColors.dll</HintPath>
+    </Reference>
+    <Reference Include="MaterialDesignThemes.MahApps, Version=0.1.0.325, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MaterialDesignThemes.MahApps.0.1.0\lib\net45\MaterialDesignThemes.MahApps.dll</HintPath>
+    </Reference>
+    <Reference Include="MaterialDesignThemes.Wpf, Version=2.6.0.325, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MaterialDesignThemes.2.6.0\lib\net45\MaterialDesignThemes.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data, Version=8.0.17.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.8.0.17\lib\net452\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Renci.SshNet, Version=2016.1.0.0, Culture=neutral, PublicKeyToken=1cee9f8bde3db106, processorArchitecture=MSIL">
+      <HintPath>..\packages\SSH.NET.2016.1.0\lib\net40\Renci.SshNet.dll</HintPath>
+    </Reference>
+    <Reference Include="SanNiuSignal, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\debug\SanNiuSignal.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Configuration.Install" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.SqlClient, Version=4.6.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.SqlClient.4.8.0\lib\net461\System.Data.SqlClient.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Drawing.Design" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Runtime.Remoting" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Forms.DataVisualization, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Content\FastReport\System.Windows.Forms.DataVisualization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\ControlzEx.3.0.2.4\lib\net45\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="Xceed.Wpf.AvalonDock, Version=3.7.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.7.0\lib\net40\Xceed.Wpf.AvalonDock.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Aero, Version=3.7.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.7.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.Aero.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Metro, Version=3.7.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.7.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.Metro.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.VS2010, Version=3.7.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.7.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.VS2010.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.Toolkit, Version=3.7.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.7.0\lib\net40\Xceed.Wpf.Toolkit.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="APP\SingleInstances.cs" />
+    <Compile Include="Controls\BevelMonitorInfo.xaml.cs">
+      <DependentUpon>BevelMonitorInfo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\CacheMonitorInfo.xaml.cs">
+      <DependentUpon>CacheMonitorInfo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\CarInfo.xaml.cs">
+      <DependentUpon>CarInfo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\CuttingMonitorInfo.xaml.cs">
+      <DependentUpon>CuttingMonitorInfo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\MeasuringLengthMonitorInfo.xaml.cs">
+      <DependentUpon>MeasuringLengthMonitorInfo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\MonitorProps\BevelMonitorProps.cs" />
+    <Compile Include="Controls\MonitorProps\CacheMonitorProps.cs" />
+    <Compile Include="Controls\MonitorProps\CarMonitorProps.cs" />
+    <Compile Include="Controls\MonitorProps\CuttingMonitorProps.cs" />
+    <Compile Include="Controls\MonitorProps\MeasuringLengthMonitorProps.cs" />
+    <Compile Include="Controls\MonitorProps\StationForFinishedMonitorProps.cs" />
+    <Compile Include="Controls\StationForFinishedMonitor.xaml.cs">
+      <DependentUpon>StationForFinishedMonitor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\MachiningTypeMonitor.xaml.cs">
+      <DependentUpon>MachiningTypeMonitor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\MonitorProps\MachiningTypeMonitorProps.cs" />
+    <Compile Include="Controls\MonitorProps\RobotForAeesmblyMonitorProps.cs" />
+    <Compile Include="Controls\MonitorProps\WeldingTypeMonitorProps.cs" />
+    <Compile Include="Controls\AeesmblyMonitor.xaml.cs">
+      <DependentUpon>AeesmblyMonitor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\TrussInfo.cs">
+      <DependentUpon>TrussInfo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\UTurnSRMMonitor.xaml.cs">
+      <DependentUpon>UTurnSRMMonitor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\WeldingTypeMonitor.xaml.cs">
+      <DependentUpon>WeldingTypeMonitor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\WinMoveTruss.xaml.cs">
+      <DependentUpon>WinMoveTruss.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EquipmentExcute\Machine\BevelingNormalExcute.cs" />
+    <Compile Include="EquipmentExcute\Machine\CutterNormalExcute.cs" />
+    <Compile Include="EquipmentExcute\Machine\LengthMeasuringNormalExcute.cs" />
+    <Compile Include="EquipmentExcute\Machine\MachineExcute.cs" />
+    <Compile Include="EquipmentExcute\Machine\AssemblyNormalExcute.cs" />
+    <Compile Include="EquipmentExcute\Marking\MarkingNormalExcute.cs" />
+    <Compile Include="EquipmentExcute\Marking\SendDataToMarking.cs" />
+    <Compile Include="EquipmentExcute\PipeLine\LengthMeasuringCacheExcute.cs" />
+    <Compile Include="EquipmentExcute\PipeLine\AssemblyConveyorLineExcute.cs" />
+    <Compile Include="EquipmentExcute\PipeLine\AssemblyCacheExcute.cs" />
+    <Compile Include="EquipmentExcute\PipeLine\BevelCacheExcute.cs" />
+    <Compile Include="EquipmentExcute\PipeLine\PipeLineExcute.cs" />
+    <Compile Include="EquipmentExcute\Car\CarEnums\CarProps.cs" />
+    <Compile Include="EquipmentExcute\Car\CarExcute.cs" />
+    <Compile Include="EquipmentExcute\Car\CarNormalExcute.cs" />
+    <Compile Include="EquipmentExcute\Marking\MarkingEnums\ECSToMarkingToolPorps.cs" />
+    <Compile Include="EquipmentExcute\Marking\MarkingEnums\MarkingToECSToolPorps.cs" />
+    <Compile Include="EquipmentExcute\Marking\MarkingExcute.cs" />
+    <Compile Include="EquipmentExcute\Robot\Enums\PcPlcAgv.cs" />
+    <Compile Include="EquipmentExcute\Robot\Enums\PcRobotStation.cs" />
+    <Compile Include="EquipmentExcute\Robot\Enums\PlcPcAgv.cs" />
+    <Compile Include="EquipmentExcute\Robot\Enums\RobotPcInformation.cs" />
+    <Compile Include="EquipmentExcute\Robot\Enums\RobotPcStation.cs" />
+    <Compile Include="EquipmentExcute\Robot\RobotExcute.cs" />
+    <Compile Include="EquipmentExcute\Robot\RobotForAssembly.cs" />
+    <Compile Include="EquipmentExcute\Robot\RobotForWeld.cs" />
+    <Compile Include="EquipmentExcute\Robot\RobotProps.cs" />
+    <Compile Include="EquipmentExcute\SRMV125\SingeForkSSRMExcute.cs" />
+    <Compile Include="EquipmentExcute\SRMV125\SingeForkTurnSRMExcute.cs" />
+    <Compile Include="EquipmentExcute\SRMV125\SRMProps.cs" />
+    <Compile Include="EquipmentExcute\SRMV130\SingeForkSRMExcute.cs" />
+    <Compile Include="EquipmentExcute\SRMV130\SingeForkSSRMExcute.cs" />
+    <Compile Include="EquipmentExcute\SRMV130\SRMExcute.cs" />
+    <Compile Include="EquipmentExcute\SRMV130\SRMProps.cs" />
+    <Compile Include="EquipmentExcute\SRMV130\SSRMProps.cs" />
+    <Compile Include="EquipmentExcute\StationV162\StationForFinished.cs" />
+    <Compile Include="EquipmentExcute\StationV162\StationForPortInOrOutExcute.cs" />
+    <Compile Include="EquipmentExcute\SRMV125\SingeForkSRMExcute.cs" />
+    <Compile Include="EquipmentExcute\StationV162\StationExcute.cs" />
+    <Compile Include="EquipmentExcute\StationV162\StationForStockerInExcute.cs" />
+    <Compile Include="EquipmentExcute\StationV162\StationForStockerInOrOutExcute.cs" />
+    <Compile Include="EquipmentExcute\StationV162\StationForStockerOutExcute.cs" />
+    <Compile Include="EquipmentExcute\StationV162\StationForPortOutExcute.cs" />
+    <Compile Include="EquipmentExcute\SRMV125\SRMExcute.cs" />
+    <Compile Include="EquipmentExcute\StationV162\StationForPortInExcute.cs" />
+    <Compile Include="Controls\WinLocationInput.xaml.cs">
+      <DependentUpon>WinLocationInput.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\StationInfo.xaml.cs">
+      <DependentUpon>StationInfo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SRMMonitor.xaml.cs">
+      <DependentUpon>SRMMonitor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EquipmentExcute\StationV162\StationForTrussInExcute.cs" />
+    <Compile Include="EquipmentExcute\StationV162\StationForTrussOutExcute.cs" />
+    <Compile Include="EquipmentExcute\StationV162\StationForWeldExcute.cs" />
+    <Compile Include="EquipmentExcute\StationV162\StationProps.cs" />
+    <Compile Include="EquipmentExcute\StationV162\TransferStationExcute.cs" />
+    <Compile Include="EquipmentExcute\Truss\TrussNormalExcute.cs" />
+    <Compile Include="EquipmentExcute\Truss\TrussExcute.cs" />
+    <Compile Include="EquipmentExcute\Truss\TrussNormalProps.cs" />
+    <Compile Include="OPC\OPCHelp.cs" />
+    <Compile Include="OPC\PlcStatus.cs" />
+    <Compile Include="OPC\S7Helper.cs" />
+    <Compile Include="SocketUtility\SocketClient.cs" />
+    <Compile Include="SocketUtility\WCSToRECS.cs" />
+    <Compile Include="ViewModel\LocationAddVM.cs" />
+    <Compile Include="ViewModel\PageInfoVM.cs" />
+    <Compile Include="ViewModel\StepTraceVM.cs" />
+    <Compile Include="ViewModel\UserEditVM.cs" />
+    <Compile Include="View\CacheInfo\CacheMaterial.xaml.cs">
+      <DependentUpon>CacheMaterial.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\CacheInfo\WinCacheMaterialAddOrEdit.xaml.cs">
+      <DependentUpon>WinCacheMaterialAddOrEdit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\CacheInfo\WinCutPlanAddOrEdit.xaml.cs">
+      <DependentUpon>WinCutPlanAddOrEdit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ContainerInfo\WinPallet.xaml.cs">
+      <DependentUpon>WinPallet.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ContainerInfo\WinPalletAdd.xaml.cs">
+      <DependentUpon>WinPalletAdd.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\CutPlanInfo\WinCutPlan.xaml.cs">
+      <DependentUpon>WinCutPlan.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\CutPlanInfo\WinCutPlanAddOrEdit.xaml.cs">
+      <DependentUpon>WinCutPlanAddOrEdit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\EquipmentInfo\WinEquipment.xaml.cs">
+      <DependentUpon>WinEquipment.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\EquipmentInfo\WinEquipmentAddOrEdit.xaml.cs">
+      <DependentUpon>WinEquipmentAddOrEdit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\EquipmentInfo\WinEquipmentType.xaml.cs">
+      <DependentUpon>WinEquipmentType.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\EquipmentInfo\WinEquipmentTypeAddOrEdit.xaml.cs">
+      <DependentUpon>WinEquipmentTypeAddOrEdit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\EquipmentInfo\WinEquipmentTypePropTemplateAddOrEdit.xaml.cs">
+      <DependentUpon>WinEquipmentTypePropTemplateAddOrEdit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\EquipmentInfo\WinLed.xaml.cs">
+      <DependentUpon>WinLed.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\EquipmentInfo\WinLedAdd.xaml.cs">
+      <DependentUpon>WinLedAdd.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\EquipmentInfo\WinPortStockerStation.xaml.cs">
+      <DependentUpon>WinPortStockerStation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\EquipmentInfo\WinStation.xaml.cs">
+      <DependentUpon>WinStation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\EquipmentInfo\WinStationAddOrEdit.xaml.cs">
+      <DependentUpon>WinStationAddOrEdit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\LocationInfo\WinLocation.xaml.cs">
+      <DependentUpon>WinLocation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\LocationInfo\WinLocationAdd.xaml.cs">
+      <DependentUpon>WinLocationAdd.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\LocationInfo\WinLocationStatusChange.xaml.cs">
+      <DependentUpon>WinLocationStatusChange.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PipeOrderInfo\WinOrder.xaml.cs">
+      <DependentUpon>WinOrder.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PipeOrderInfo\WinOrderAddOrEdit.xaml.cs">
+      <DependentUpon>WinOrderAddOrEdit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PipeOrderInfo\WinCutPlanAddOrEdit.xaml.cs">
+      <DependentUpon>WinCutPlanAddOrEdit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\StepTraceTask\WinStepTrace.xaml.cs">
+      <DependentUpon>WinStepTrace.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SysLogInfo\WinLogInfo.xaml.cs">
+      <DependentUpon>WinLogInfo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SystemInfo\WinConfig.xaml.cs">
+      <DependentUpon>WinConfig.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SystemInfo\WinConfigAddOrEdit.xaml.cs">
+      <DependentUpon>WinConfigAddOrEdit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SystemInfo\WinDict.xaml.cs">
+      <DependentUpon>WinDict.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SystemInfo\WinDictAddOrEdit.xaml.cs">
+      <DependentUpon>WinDictAddOrEdit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SystemInfo\WinDictDetialAddOrEdit.xaml.cs">
+      <DependentUpon>WinDictDetialAddOrEdit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\TaskInfo\WinCarTaskInfo.xaml.cs">
+      <DependentUpon>WinCarTaskInfo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\TaskInfo\WinTaskAdd.xaml.cs">
+      <DependentUpon>WinTaskAdd.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\TaskInfo\WinTaskInfo.xaml.cs">
+      <DependentUpon>WinTaskInfo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\EquipmentInfo\WinPortStockerStationAddOrEdit.xaml.cs">
+      <DependentUpon>WinPortStockerStationAddOrEdit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\TaskInfo\WinTaskMaintain.xaml.cs">
+      <DependentUpon>WinTaskMaintain.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\WarehouseInfo\WinWarehouseInfo.xaml.cs">
+      <DependentUpon>WinWarehouseInfo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Win\BaseWindow.cs" />
+    <Compile Include="View\Win\HideCloseWindow.cs" />
+    <Compile Include="View\WinLogin.xaml.cs">
+      <DependentUpon>WinLogin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\WinMain.xaml.cs">
+      <DependentUpon>WinMain.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UserOperation\WinPermission.xaml.cs">
+      <DependentUpon>WinPermission.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UserOperation\WinRoleAddOrEdit.xaml.cs">
+      <DependentUpon>WinRoleAddOrEdit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UserOperation\WinRole.xaml.cs">
+      <DependentUpon>WinRole.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UserOperation\WinUserAddOrEdit.xaml.cs">
+      <DependentUpon>WinUserAddOrEdit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UserOperation\WinUser.xaml.cs">
+      <DependentUpon>WinUser.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Content\Doc\ECS调度整理.md" />
+    <None Include="Content\Doc\README.md" />
+    <None Include="Content\Doc\WCS-PLC接口协议 V1.62（TCP&amp;S7）.xlsx" />
+    <None Include="Content\Doc\华恒WCS接口白皮书2.1.8.docx" />
+    <None Include="Content\Doc\华恒双货叉双任务堆垛机通讯协议_V1.32换轨.pdf" />
+    <None Include="Content\Doc\设计.md" />
+    <None Include="Content\FastReport\Barcode.frx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\FastReport\Barcode2.frx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\FastReport\Barcode3.frx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\FastReport\Barcode4.frx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="View\MaterialInfo\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Controls\BevelMonitorInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\CacheMonitorInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\CarInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
+    <Page Include="Controls\CuttingMonitorInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\MeasuringLengthMonitorInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\StationForFinishedMonitor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\MachiningTypeMonitor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\AeesmblyMonitor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\TrussInfo.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\UTurnSRMMonitor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\WeldingTypeMonitor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\WinLocationInput.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\StationInfo.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\SRMMonitor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\WinMoveTruss.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resource\Styles\BaseStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\CacheInfo\CacheMaterial.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\CacheInfo\WinCacheMaterialAddOrEdit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\CacheInfo\WinCutPlanAddOrEdit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ContainerInfo\WinPallet.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\ContainerInfo\WinPalletAdd.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\CutPlanInfo\WinCutPlan.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\CutPlanInfo\WinCutPlanAddOrEdit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\EquipmentInfo\WinEquipment.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\EquipmentInfo\WinEquipmentAddOrEdit.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\EquipmentInfo\WinEquipmentType.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\EquipmentInfo\WinEquipmentTypeAddOrEdit.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\EquipmentInfo\WinEquipmentTypePropTemplateAddOrEdit.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\EquipmentInfo\WinLed.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\EquipmentInfo\WinLedAdd.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\EquipmentInfo\WinPortStockerStation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\EquipmentInfo\WinStation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\EquipmentInfo\WinStationAddOrEdit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\LocationInfo\WinLocation.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\LocationInfo\WinLocationAdd.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\LocationInfo\WinLocationStatusChange.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\PipeOrderInfo\WinOrder.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PipeOrderInfo\WinOrderAddOrEdit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PipeOrderInfo\WinCutPlanAddOrEdit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\StepTraceTask\WinStepTrace.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SysLogInfo\WinLogInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SystemInfo\WinConfig.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SystemInfo\WinConfigAddOrEdit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SystemInfo\WinDict.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SystemInfo\WinDictAddOrEdit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SystemInfo\WinDictDetialAddOrEdit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\TaskInfo\WinCarTaskInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
+    <Page Include="View\TaskInfo\WinTaskAdd.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\TaskInfo\WinTaskInfo.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\TaskInfo\WinTaskMaintain.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\WarehouseInfo\WinWarehouseInfo.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\WinLogin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\WinMain.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\UserOperation\WinPermission.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\UserOperation\WinRoleAddOrEdit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\UserOperation\WinRole.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\UserOperation\WinUserAddOrEdit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\UserOperation\WinUser.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\EquipmentInfo\WinPortStockerStationAddOrEdit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\Dll\Led5kSDK.dll" />
+    <Content Include="Content\Doc\huahengwcs2.1.4.sql" />
+    <Resource Include="Content\Doc\Version.txt" />
+    <Content Include="Content\FastReport\FastReport.Bars.dll" />
+    <Content Include="Content\FastReport\FastReport.dll" />
+    <Content Include="Content\FastReport\FastReport.Editor.dll" />
+    <Content Include="Content\FastReport\FastReport.Install.dll" />
+    <Content Include="Content\FastReport\FastReport.VSDesign.dll" />
+    <Content Include="Content\FastReport\FastReport.Web.dll" />
+    <Content Include="Content\FastReport\System.Windows.Forms.DataVisualization.dll" />
+    <Content Include="DLL\SanNiuSignal.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Led5kSDK.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Resource Include="Content\Image\Tractor.ico" />
+    <Resource Include="Content\Image\List.JPG" />
+    <Resource Include="Content\Image\favicon.ico" />
+    <Resource Include="开发记录.txt" />
+    <Resource Include="Content\Icon\关闭.png" />
+    <Resource Include="Content\Icon\最大化.png" />
+    <Resource Include="Content\Icon\最小化.png" />
+    <Resource Include="Content\Image\Huaheng.png" />
+    <Resource Include="Content\Image\huaheng2.png" />
+    <Resource Include="Content\Icon\未识别.png" />
+    <Resource Include="Content\Icon\按钮.png" />
+    <Resource Include="Content\Icon\菜单.png" />
+    <Resource Include="Content\Icon\目录.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HHECS.Bll\HHECS.Bll.csproj">
+      <Project>{b59f5bf2-7b97-44fb-b939-80e039783e56}</Project>
+      <Name>HHECS.Bll</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HHECS.DAL\HHECS.DAL.csproj">
+      <Project>{d5a504a2-22d3-4707-bf56-f65dcd7edf0d}</Project>
+      <Name>HHECS.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HHECS.Model\HHECS.Model.csproj">
+      <Project>{f6c083e0-8cf8-430e-8292-778882cb2d50}</Project>
+      <Name>HHECS.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HR.Themes.Fischer.WPF\HR.Themes.Fischer.WPF.csproj">
+      <Project>{d8166ad7-25dd-4953-84dd-347cb0321582}</Project>
+      <Name>HR.Themes.Fischer.WPF</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HslCommunication_Net45\HslCommunication_Net45.csproj">
+      <Project>{7F8029DA-1B94-4B1D-B91F-5B21DBF2F3A2}</Project>
+      <Name>HslCommunication_Net45</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.6.1 %28x86 和 x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

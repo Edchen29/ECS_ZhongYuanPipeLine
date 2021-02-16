@@ -1,0 +1,76 @@
+﻿<win:BaseWindow
+    xmlns:win="clr-namespace:HHECS.View.Win" x:Class="HHECS.View.SystemInfo.WinDictDetialAddOrEdit"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local ="clr-namespace:HHECS.Model.Controls;assembly=HHECS.Model"
+        mc:Ignorable="d"
+        Title="WinDictDetialAddOrEdit" Height="317.844" Width="430.018" ResizeMode="NoResize" SizeToContent="WidthAndHeight">
+    <Window.Resources>
+        <Style TargetType="StackPanel">
+            <Setter Property="Orientation" Value="Horizontal"/>
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="5,5,5,5"/>
+        </Style>
+        <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+        <Style TargetType="TextBox" BasedOn="{StaticResource BaseTextBoxStyle}">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Width" Value="300"/>
+        </Style>
+        <Style TargetType="local:NumericBox">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Width" Value="300"/>
+        </Style>
+    </Window.Resources>
+    <Grid x:Name="GridMain">
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Row="0" HorizontalAlignment="Left" Margin="20,0,0,0">
+            <TextBlock>字典编码：</TextBlock>
+            <TextBlock x:Name ="LabCode" Text="{Binding HeadCode}"></TextBlock>
+            <TextBlock>字典名称：</TextBlock>
+            <TextBlock x:Name ="LabName" Text="{Binding HeadName}"></TextBlock>
+        </StackPanel>
+        <StackPanel Grid.Row="1">
+            <TextBlock>字典明细编码：</TextBlock>
+            <TextBox x:Name ="TxtDictDetailCode" Text="{Binding Code}"></TextBox>
+        </StackPanel>
+        <StackPanel Grid.Row="2">
+            <TextBlock>字典明细名称：</TextBlock>
+            <TextBox x:Name="TxtDictDetailName" Text="{Binding Name}"></TextBox>
+        </StackPanel>
+        <StackPanel Grid.Row="3">
+            <TextBlock>字典明细值：</TextBlock>
+            <TextBox x:Name="TxtDictDetailValue" Text="{Binding Value}"></TextBox>
+        </StackPanel>
+        <StackPanel Grid.Row="4">
+            <TextBlock>字典明细排序：</TextBlock>
+            <local:NumericBox x:Name="TxtSort" Minimum="0" Maximum="10" DecimalPlaces="0"  Text="{Binding Sort}"></local:NumericBox>
+        </StackPanel>
+        <StackPanel Grid.Row="5">
+            <TextBlock>备注：</TextBlock>
+            <TextBox x:Name="TxtDictDetailRemark" Text="{Binding Remark}"></TextBox>
+        </StackPanel>
+        <StackPanel HorizontalAlignment="Right" Grid.Row="6">
+            <Button x:Name="BtnSave" Click="BtnSave_Click" Margin="2">保存</Button>
+            <Button x:Name="BtnCancel" Click="BtnCancel_Click">取消</Button>
+        </StackPanel>
+    </Grid>
+</win:BaseWindow>

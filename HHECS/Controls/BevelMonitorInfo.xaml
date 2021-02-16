@@ -1,0 +1,224 @@
+﻿<UserControl x:Class="HHECS.Controls.BevelMonitorInfo"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HHECS.Controls"
+        mc:Ignorable="d"
+        d:DesignHeight="550" d:DesignWidth="900">
+    <UserControl.Resources>
+        <Style x:Key="labStyle" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource BaseTextBlockStyle}">
+            <Setter Property="Foreground" Value="Blue"/>
+            <Setter Property="Margin" Value="1,0,1,0"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="FontSize" Value="13"/>
+        </Style>
+        <Style x:Key="txtBlockStyle" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource BaseTextBlockStyle}">
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="Margin" Value="1,0,1,0"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="FontSize" Value="13"/>
+        </Style>
+        <Style TargetType="Button"  BasedOn="{StaticResource BaseButtonStyle}">
+            <Setter Property="FontSize" Value="13"></Setter>
+            <Setter Property="Margin" Value="2,0,0,0"/>
+        </Style>
+        <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="20"/>
+        </Style>
+        <Style TargetType="StackPanel">
+            <Setter Property="Orientation" Value="Horizontal"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Right"></Setter>
+            <Setter Property="VerticalAlignment" Value="Stretch"></Setter>
+        </Style>
+    </UserControl.Resources>
+    
+    <Grid Background="#FFEEEEEE" Margin="5,5,5,5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+
+        </Grid.ColumnDefinitions>
+        <TextBlock x:Name="txt_BevelingName"  Style="{DynamicResource labStyle}"   Grid.Row="0" Grid.ColumnSpan="3" HorizontalAlignment="Center"  FontWeight="Bold" FontSize="18" ><Run Text="坡口机"/><Run Text="设备名"/></TextBlock>
+
+        <StackPanel  Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" >
+            <TextBlock Style="{DynamicResource txtBlockStyle}" >操作模式：</TextBlock>
+            <TextBlock x:Name="txt_OperationModel" Style="{DynamicResource labStyle}" Text="未获取" TextWrapping="Wrap" />
+        </StackPanel>
+        <StackPanel  Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" >
+            <TextBlock Style="{DynamicResource txtBlockStyle}">站台故障：</TextBlock>
+            <TextBlock x:Name="txt_TotalError" Style="{DynamicResource labStyle}" Text="未获取" TextWrapping="Wrap" />
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.Column="2" HorizontalAlignment="Center">
+            <TextBlock Style="{DynamicResource txtBlockStyle}">请求下料-报文：</TextBlock>
+            <TextBlock x:Name="txt_RequestMessage" Style="{DynamicResource labStyle}" Text="未获取" TextWrapping="Wrap" />
+        </StackPanel>
+        <StackPanel  Grid.Row="1" Grid.Column="3" HorizontalAlignment="Center" >
+            <TextBlock Style="{DynamicResource txtBlockStyle}">请求下料-电器编号：</TextBlock>
+            <TextBlock x:Name="txt_RequestNumber" Style="{DynamicResource labStyle}" Text="未获取" TextWrapping="Wrap" />
+        </StackPanel>
+        
+        <StackPanel  Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center" >
+            <TextBlock Style="{DynamicResource txtBlockStyle}">请求下料-任务号：</TextBlock>
+            <TextBlock x:Name="txt_RequestTaskId" Style="{DynamicResource labStyle}" Text="未获取" TextWrapping="Wrap" />
+        </StackPanel>
+        <StackPanel  Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" >
+            <TextBlock Style="{DynamicResource txtBlockStyle}">请求下料-条码：</TextBlock>
+            <TextBlock x:Name="txt_RequestBarcode" Style="{DynamicResource labStyle}" Text="未获取" TextWrapping="Wrap" />
+        </StackPanel>
+        <StackPanel  Grid.Row="2" Grid.Column="2" HorizontalAlignment="Center" >
+            <TextBlock Style="{DynamicResource txtBlockStyle}">请求下料-备用：</TextBlock>
+            <TextBlock x:Name="txt_RequestBackup" Style="{DynamicResource labStyle}" Text="未获取" TextWrapping="Wrap" />
+        </StackPanel>
+        <StackPanel  Grid.Row="2" Grid.Column="3" HorizontalAlignment="Center" >
+            <TextBlock Style="{DynamicResource txtBlockStyle}">请求上料-报文：</TextBlock>
+            <TextBlock x:Name="txt_ArriveMessage" Style="{DynamicResource labStyle}" Text="未获取" TextWrapping="Wrap" />
+        </StackPanel>
+        
+        <StackPanel  Grid.Row="3" Grid.Column="0" HorizontalAlignment="Center" >
+            <TextBlock Style="{DynamicResource txtBlockStyle}">请求上料-结果：</TextBlock>
+            <TextBlock x:Name="txt_ArriveResult" Style="{DynamicResource labStyle}" Text="未获取" TextWrapping="Wrap" />
+        </StackPanel>
+        <StackPanel  Grid.Row="3" Grid.Column="1" HorizontalAlignment="Center" >
+            <TextBlock Style="{DynamicResource txtBlockStyle}">请求上料-实际地址：</TextBlock>
+            <TextBlock x:Name="txt_ArriveRealAddress" Style="{DynamicResource labStyle}" Text="未获取" TextWrapping="Wrap" />
+        </StackPanel>
+        <StackPanel  Grid.Row="3" Grid.Column="2" HorizontalAlignment="Center" >
+            <TextBlock Style="{DynamicResource txtBlockStyle}" >请求上料-分配地址：</TextBlock>
+            <TextBlock x:Name="txt_ArriveAllcationAddress" Style="{DynamicResource labStyle}" Text="未获取" TextWrapping="Wrap" />
+        </StackPanel>
+        <StackPanel  Grid.Row="3" Grid.Column="3" HorizontalAlignment="Center" >
+            <TextBlock Style="{DynamicResource txtBlockStyle}">请求上料-任务号：</TextBlock>
+            <TextBlock x:Name="txt_ArriveTaskId" Style="{DynamicResource labStyle}" Text="未获取" TextWrapping="Wrap" />
+        </StackPanel>
+        
+        <StackPanel Grid.Row="4" Grid.Column="0" HorizontalAlignment="Center">
+            <TextBlock Style="{DynamicResource txtBlockStyle}">请求上料-条码：</TextBlock>
+            <TextBlock x:Name="txt_ArriveBarcode" Style="{DynamicResource labStyle}" Text="未获取" TextWrapping="Wrap" />
+        </StackPanel>
+
+        <StackPanel Grid.Row="4" Grid.Column="1" HorizontalAlignment="Center">
+            <TextBlock Style="{DynamicResource txtBlockStyle}">请求上料-备用：</TextBlock>
+            <TextBlock x:Name="txt_ArriveBackup" Style="{DynamicResource labStyle}" Text="未获取" TextWrapping="Wrap" />
+        </StackPanel>
+        <StackPanel Grid.Row="4" Grid.Column="2" HorizontalAlignment="Center">
+            <TextBlock Style="{DynamicResource txtBlockStyle}">回复下料-报文：</TextBlock>
+            <TextBlock x:Name="txt_WCSReplyMessage" Style="{DynamicResource labStyle}" Text="未获取" TextWrapping="Wrap" />
+        </StackPanel>
+        <StackPanel Grid.Row="4" Grid.Column="3" HorizontalAlignment="Center">
+            <TextBlock Style="{DynamicResource txtBlockStyle}">回复下料-电器编码：</TextBlock>
+            <TextBlock x:Name="txt_WCSReplyNumber" Style="{DynamicResource labStyle}" Text="未获取" TextWrapping="Wrap" />
+        </StackPanel>
+
+
+        <StackPanel Grid.Row="5" Grid.Column="0" HorizontalAlignment="Center">
+            <TextBlock Style="{DynamicResource txtBlockStyle}">回复下料-目标地址：</TextBlock>
+            <TextBlock x:Name="txt_WCSReplyAddress" Style="{DynamicResource labStyle}" Text="未获取" TextWrapping="Wrap" />
+        </StackPanel>
+        <StackPanel Grid.Row="5" Grid.Column="1" HorizontalAlignment="Center">
+            <TextBlock Style="{DynamicResource txtBlockStyle}">回复下料-任务号：</TextBlock>
+            <TextBlock x:Name="txt_WCSReplyTaskId" Style="{DynamicResource labStyle}" Text="未获取" TextWrapping="Wrap" />
+        </StackPanel>
+        <StackPanel Grid.Row="5" Grid.Column="2" HorizontalAlignment="Center">
+            <TextBlock Style="{DynamicResource txtBlockStyle}">回复下料-条码：</TextBlock>
+            <TextBlock x:Name="txt_WCSReplyBarcode" Style="{DynamicResource labStyle}" Text="未获取" TextWrapping="Wrap" />
+        </StackPanel>
+        <StackPanel Grid.Row="5" Grid.Column="3" HorizontalAlignment="Center">
+            <TextBlock Style="{DynamicResource txtBlockStyle}">回复下料-工件类型：</TextBlock>
+            <TextBlock x:Name="txt_WCSReplyProductId" Style="{DynamicResource labStyle}" Text="未获取" TextWrapping="Wrap" />
+        </StackPanel>
+        
+        <StackPanel Grid.Row="6" Grid.Column="0" HorizontalAlignment="Center">
+            <TextBlock Style="{DynamicResource txtBlockStyle}">回复下料-货物材料：</TextBlock>
+            <TextBlock x:Name="txt_WCSReplyMaterial" Style="{DynamicResource labStyle}" Text="未获取" TextWrapping="Wrap" />
+        </StackPanel>
+        <StackPanel Grid.Row="6" Grid.Column="1" HorizontalAlignment="Center">
+            <TextBlock Style="{DynamicResource txtBlockStyle}">回复下料-货物长度：</TextBlock>
+            <TextBlock x:Name="txt_WCSReplyLength" Style="{DynamicResource labStyle}" Text="未获取" TextWrapping="Wrap" />
+        </StackPanel>
+        <StackPanel Grid.Row="6" Grid.Column="2" HorizontalAlignment="Center">
+            <TextBlock Style="{DynamicResource txtBlockStyle}">回复下料-货物直径：</TextBlock>
+            <TextBlock x:Name="txt_WCSReplyDiameter" Style="{DynamicResource labStyle}" Text="未获取" TextWrapping="Wrap" />
+        </StackPanel>
+        <StackPanel Grid.Row="6" Grid.Column="3" HorizontalAlignment="Center">
+            <TextBlock Style="{DynamicResource txtBlockStyle}">回复下料-货物壁厚：</TextBlock>
+            <TextBlock x:Name="txt_WCSReplyThickness" Style="{DynamicResource labStyle}" Text="未获取" TextWrapping="Wrap" />
+        </StackPanel>
+
+        <StackPanel Grid.Row="7" Grid.Column="0" HorizontalAlignment="Center">
+            <TextBlock Style="{DynamicResource txtBlockStyle}">回复下料-备用：</TextBlock>
+            <TextBlock x:Name="txt_WCSReplyBackup" Style="{DynamicResource labStyle}" Text="未获取" TextWrapping="Wrap" />
+        </StackPanel>
+        <StackPanel Grid.Row="7" Grid.Column="1" HorizontalAlignment="Center">
+            <TextBlock Style="{DynamicResource txtBlockStyle}">回复上料-报文：</TextBlock>
+            <TextBlock x:Name="txt_WCSACKMessage" Style="{DynamicResource labStyle}" Text="未获取" TextWrapping="Wrap" />
+        </StackPanel>
+        <StackPanel Grid.Row="7" Grid.Column="2" HorizontalAlignment="Center">
+            <TextBlock Style="{DynamicResource txtBlockStyle}">回复上料-电器编码：</TextBlock>
+            <TextBlock x:Name="txt_WCSACKNumber" Style="{DynamicResource labStyle}" Text="未获取" TextWrapping="Wrap" />
+        </StackPanel>
+        <StackPanel Grid.Row="7" Grid.Column="3" HorizontalAlignment="Center">
+            <TextBlock Style="{DynamicResource txtBlockStyle}">回复上料-任务号：</TextBlock>
+            <TextBlock x:Name="txt_WCSACKTaskId" Style="{DynamicResource labStyle}" Text="未获取" TextWrapping="Wrap" />
+        </StackPanel>
+        
+        <StackPanel Grid.Row="8" Grid.Column="0" HorizontalAlignment="Center">
+            <TextBlock Style="{DynamicResource txtBlockStyle}">回复上料-条码：</TextBlock>
+            <TextBlock x:Name="txt_WCSACKBarcode" Style="{DynamicResource labStyle}" Text="未获取" TextWrapping="Wrap" />
+        </StackPanel>
+        <StackPanel Grid.Row="8" Grid.Column="1" HorizontalAlignment="Center">
+            <TextBlock Style="{DynamicResource txtBlockStyle}">回复上料-工件类型：</TextBlock>
+            <TextBlock x:Name="txt_WCSACKProductId" Style="{DynamicResource labStyle}" Text="未获取" TextWrapping="Wrap" />
+        </StackPanel>
+        <StackPanel Grid.Row="8" Grid.Column="2" HorizontalAlignment="Center">
+            <TextBlock Style="{DynamicResource txtBlockStyle}">回复上料-货物材料：</TextBlock>
+            <TextBlock x:Name="txt_WCSACKMaterial" Style="{DynamicResource labStyle}" Text="未获取" TextWrapping="Wrap" />
+        </StackPanel>
+        <StackPanel Grid.Row="8" Grid.Column="3" HorizontalAlignment="Center">
+            <TextBlock Style="{DynamicResource txtBlockStyle}">回复上料-货物长度：</TextBlock>
+            <TextBlock x:Name="txt_WCSACKLength" Style="{DynamicResource labStyle}" Text="未获取" TextWrapping="Wrap" />
+        </StackPanel>
+        
+        <StackPanel Grid.Row="9" Grid.Column="0" HorizontalAlignment="Center">
+            <TextBlock Style="{DynamicResource txtBlockStyle}">回复上料-货物直径：</TextBlock>
+            <TextBlock x:Name="txt_WCSACKDiameter" Style="{DynamicResource labStyle}" Text="未获取" TextWrapping="Wrap" />
+        </StackPanel>
+        <StackPanel Grid.Row="9" Grid.Column="1" HorizontalAlignment="Center">
+            <TextBlock Style="{DynamicResource txtBlockStyle}">回复上料-货物壁厚：</TextBlock>
+            <TextBlock x:Name="txt_WCSACKThickness" Style="{DynamicResource labStyle}" Text="未获取" TextWrapping="Wrap" />
+        </StackPanel>
+        <StackPanel Grid.Row="9" Grid.Column="2" HorizontalAlignment="Center">
+            <TextBlock Style="{DynamicResource txtBlockStyle}">回复上料-备用：</TextBlock>
+            <TextBlock x:Name="txt_WCSACKBackup" Style="{DynamicResource labStyle}" Text="未获取" TextWrapping="Wrap" />
+        </StackPanel>
+        <StackPanel Grid.Row="9" Grid.Column="3" HorizontalAlignment="Center">
+            <TextBlock Style="{DynamicResource txtBlockStyle}">请求翻转：</TextBlock>
+            <TextBlock x:Name="txt_RequestFlip" Style="{DynamicResource labStyle}" Text="未获取" TextWrapping="Wrap" />
+        </StackPanel>
+        
+        <StackPanel Grid.Row="10" Grid.Column="0" HorizontalAlignment="Center">
+            <TextBlock Style="{DynamicResource txtBlockStyle}">回复翻转：</TextBlock>
+            <TextBlock x:Name="txt_WCSAllowFlip" Style="{DynamicResource labStyle}" Text="未获取" TextWrapping="Wrap" />
+        </StackPanel>
+        
+    </Grid>
+</UserControl>

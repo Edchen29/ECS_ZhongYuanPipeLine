@@ -1,0 +1,49 @@
+﻿<Win:HideCloseWindow
+    xmlns:Win="clr-namespace:HHECS.View.Win"
+    x:Class="HHECS.View.EquipmentInfo.WinLed"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:control="clr-namespace:HHECS.Model.Controls;assembly=HHECS.Model"
+        xmlns:local="clr-namespace:HHECS.View.EquipmentInfo"
+        mc:Ignorable="d"
+        Title="Led" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="240"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0">
+            <TextBlock HorizontalAlignment="Left" Margin="26,45,0,0" TextWrapping="Wrap" Text="LED编号：" VerticalAlignment="Top" FontSize="14"/>
+            <TextBox x:Name="txt_Code" HorizontalAlignment="Left" Height="23" Margin="87,40,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" FontSize="14"/>
+            <Button x:Name="btn_Query" Content="查询" HorizontalAlignment="Left" Margin="132,105,0,0" VerticalAlignment="Top" Width="80" Click="btn_Query_Click" Tag="led:query"/>
+            <Button x:Name="btn_Change" Content="编辑" HorizontalAlignment="Left" Margin="36,105,0,0" VerticalAlignment="Top" Width="80" Click="btn_Change_Click" Tag="led:change"/>
+            <Button x:Name="BtnAdd" Content="新增" HorizontalAlignment="Left" Margin="36,145,0,0" VerticalAlignment="Top" Width="80" Click="BtnAdd_Click" Tag="led:add"/>
+            <Button x:Name="BtnDelete" Content="删除" HorizontalAlignment="Left" Margin="132,145,0,0" VerticalAlignment="Top" Width="80" Click="BtnDelete_Click" Tag="led:delete"/>
+        </Grid>
+
+        <DockPanel Grid.Column="1">
+            <control:DataPager x:Name="page" DockPanel.Dock="Bottom" PageIndex="{Binding PageIndex,Mode=TwoWay}" PageSize="{Binding PageSize}" TotalCount="{Binding TotalCount}"
+                                   PageChanged="page_PageChanged"></control:DataPager>
+            <DataGrid x:Name="dgv_1">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
+                    <DataGridTextColumn Header="LED编号" Binding="{Binding Code}"/>
+                    <DataGridTextColumn Header="LED名称" Binding="{Binding Name}"/>
+                    <DataGridTextColumn Header="IP" Binding="{Binding IP}"/>
+                    <DataGridTextColumn Header="端口" Binding="{Binding Port}"/>
+                    <DataGridTextColumn Header="创建者" Binding="{Binding Createdby}"/>
+                    <DataGridTextColumn Header="创建时间" Binding="{Binding Created}"/>
+                    <DataGridTextColumn Header="更新人" Binding="{Binding Updatedby}"/>
+                    <DataGridTextColumn Header="更新时间" Binding="{Binding Updated}"/>
+                    <DataGridTextColumn Header="超时时间" Binding="{Binding Timeout}"/>
+                    <DataGridTextColumn Header="备注" Binding="{Binding Remark}"/>
+
+                </DataGrid.Columns>
+            </DataGrid>
+        </DockPanel>
+
+
+    </Grid>
+</Win:HideCloseWindow>

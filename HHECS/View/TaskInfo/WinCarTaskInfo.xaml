@@ -1,0 +1,99 @@
+﻿<win:BaseWindow  
+    xmlns:win="clr-namespace:HHECS.View.Win"
+    x:Class="HHECS.View.TaskInfo.WinCarTaskInfo"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:HHECS.View.TaskInfo" 
+    xmlns:control="clr-namespace:HHECS.Model.Controls;assembly=HHECS.Model" xmlns:convert="clr-namespace:HHECS.Model.ValueConverter;assembly=HHECS.Model"
+    mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800" Title="小车任务" Loaded="Window_Loaded">
+    <Window.Resources>
+        <convert:CarTaskTypeConverter x:Key="CarTaskTypeConverter"></convert:CarTaskTypeConverter>
+        <convert:TaskCarStatusConverter x:Key="TaskCarStatusConverter"></convert:TaskCarStatusConverter>
+        <Style TargetType="StackPanel">
+            <Setter Property="Orientation" Value="Horizontal"></Setter>
+            <Setter Property="VerticalAlignment" Value="Center"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+            <Setter Property="Margin" Value="5,5,5,5"></Setter>
+        </Style>
+        <Style TargetType="Button" BasedOn="{StaticResource BaseButtonStyle}">
+            <Setter Property="Margin" Value="5,5,0,5"></Setter>
+            <Setter Property="Width" Value="90"></Setter>
+        </Style>
+        <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}">
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="FontSize" Value="12"/>
+        </Style>
+        <Style TargetType="TextBox"  BasedOn="{StaticResource BaseTextBoxStyle}">
+            <Setter Property="Width" Value="100"/>
+        </Style>
+        <Style TargetType="ComboBox" BasedOn="{StaticResource BaseComboBoxStyle}">
+            <Setter Property="Width" Value="100"></Setter>
+        </Style>
+        
+
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="240"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0">
+                <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="关联工序Id：" VerticalAlignment="Top"/>
+                <TextBox x:Name="txt_StepTraceId" HorizontalAlignment="Right" Height="23" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+            </StackPanel>
+            <StackPanel Grid.Row="1">
+                <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="小车编号：" VerticalAlignment="Top"/>
+                <TextBox x:Name="txt_CarNum" HorizontalAlignment="Right"  Height="23" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+            </StackPanel>
+            <StackPanel Grid.Row="2">
+                <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="任务类型：" VerticalAlignment="Top"/>
+                <ComboBox x:Name="Cbx_TaskType" HorizontalAlignment="Right" VerticalAlignment="Top" Width="120"/>
+            </StackPanel>
+            <StackPanel Grid.Row="3">
+                <Button x:Name="btn_Query" Click="btn_Query_Click">查询</Button>
+                <Button  x:Name="btn_Delete" Click="btn_Delete_Click">删除</Button>
+            </StackPanel>
+            <StackPanel Grid.Row="4">
+
+            </StackPanel>
+        </Grid>
+        <DockPanel x:Name="DPMain" Grid.Column="1">
+            <!--<control:DataPager x:Name="page" DockPanel.Dock="Bottom" PageIndex="{Binding PageIndex,Mode=TwoWay}" PageSize="{Binding PageSize}" TotalCount="{Binding TotalCount}"
+                                   PageChanged="page_PageChanged"></control:DataPager>-->
+            <DataGrid x:Name="dgv_1" >
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="关联工序ID" Binding="{Binding StepTraceId}"/>
+                    <DataGridTextColumn Header="小车编号" Binding="{Binding CarNo}"/>
+                    <DataGridTextColumn Header="任务类型" Binding="{Binding Type , Converter={StaticResource CarTaskTypeConverter}}"/>
+                    <DataGridTextColumn Header="源位置" Binding="{Binding FromLocation}"/>
+                    <DataGridTextColumn Header="目标位置" Binding="{Binding ToLocation}"/>
+                    <DataGridTextColumn Header="是否重发" Binding="{Binding ReSend}"/>
+                    <DataGridTextColumn Header="小车状态" Binding="{Binding Status ,Converter={StaticResource TaskCarStatusConverter}}"/>
+                    <DataGridTextColumn Header="开始执行时间" Binding="{Binding StartTime}"/>
+                    <DataGridTextColumn Header="结束执行时间" Binding="{Binding EndTime}"/>
+                    <DataGridTextColumn Header="是否翻转" Binding="{Binding IsFlip}" />
+                    <DataGridTextColumn Header="创建时间" Binding="{Binding CreateTime}"/>
+                    <DataGridTextColumn Header="创建用户" Binding="{Binding CreateBy}"/>
+                    <DataGridTextColumn Header="更新时间" Binding="{Binding UpdateTime}"/>
+                    <DataGridTextColumn Header="更新用户" Binding="{Binding UpdateBy}" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </DockPanel>
+    </Grid>
+</win:BaseWindow>

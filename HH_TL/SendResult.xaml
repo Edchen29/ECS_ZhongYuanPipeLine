@@ -1,0 +1,56 @@
+﻿<Window x:Class="HH_TL.SendResult"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HH_TL"
+        mc:Ignorable="d"
+        Title="OutPage" Height="450" Width="1200">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="66"></RowDefinition>
+        </Grid.RowDefinitions>
+        <!--主表-->
+        <TabControl>
+            <Grid>
+                <DataGrid Name="grid2" Margin="2" FontSize="12" AutoGenerateColumns="False" 
+                                CanUserAddRows="False" HeadersVisibility="Column" CanUserSortColumns ="False"
+                                HorizontalGridLinesBrush ="Gainsboro" VerticalGridLinesBrush="Gainsboro"
+                                ColumnWidth="*" RowHeaderWidth="0" RowDetailsVisibilityMode="Visible" Grid.Row="0">
+                    <DataGrid.Columns>
+                        <!--<DataGridCheckBoxColumn Header="是否已选" Binding="{Binding ischeck}"/>-->
+                        <DataGridTextColumn Header="序号" Binding="{Binding id}" IsReadOnly="True" />
+                        <DataGridTextColumn Header="工件编号" Binding="{Binding GWNo}" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="材料类型MT" Binding="{Binding MT}"  IsReadOnly="True" />
+                        <DataGridTextColumn Header="管子外径OD" Binding="{Binding OD}" IsReadOnly="True" />
+                        <DataGridTextColumn Header="管子壁厚WT" Binding="{Binding WT}" IsReadOnly="True" />
+                        <DataGridTextColumn Header="原材料长YLLth" Binding="{Binding YLLth}" IsReadOnly="True" />
+                        <DataGridTextColumn Header="长度1(mm)" Binding="{Binding length1, StringFormat='#'}" IsReadOnly="True" />
+                        <DataGridTextColumn Header="长度2(mm)" Binding="{Binding length2, StringFormat='#'}" IsReadOnly="True" />
+                        <DataGridTextColumn Header="长度3(mm)" Binding="{Binding length3, StringFormat='#'}" IsReadOnly="True" />
+                        <DataGridTextColumn Header="长度4(mm)" Binding="{Binding length4, StringFormat='#'}" IsReadOnly="True" />
+                        <DataGridTextColumn Header="长度5(mm)" Binding="{Binding length5, StringFormat='#'}" IsReadOnly="True" />
+                        <DataGridTextColumn Header="长度1(mm)" Binding="{Binding length6, StringFormat='#'}" IsReadOnly="True" />
+                        <DataGridTextColumn Header="长度2(mm)" Binding="{Binding length7, StringFormat='#'}" IsReadOnly="True" />
+                        <DataGridTextColumn Header="长度3(mm)" Binding="{Binding length8, StringFormat='#'}" IsReadOnly="True" />
+                        <DataGridTextColumn Header="长度4(mm)" Binding="{Binding length9, StringFormat='#'}" IsReadOnly="True" />
+                        <DataGridTextColumn Header="长度5(mm)" Binding="{Binding length10, StringFormat='#'}" IsReadOnly="True" />
+                        <DataGridTextColumn Header="长度1(mm)" Binding="{Binding length11, StringFormat='#'}" IsReadOnly="True" />
+                        <DataGridTextColumn Header="长度2(mm)" Binding="{Binding length12, StringFormat='#'}" IsReadOnly="True" />
+                        <DataGridTextColumn Header="长度3(mm)" Binding="{Binding length13, StringFormat='#'}" IsReadOnly="True" />
+                        <DataGridTextColumn Header="长度4(mm)" Binding="{Binding length14, StringFormat='#'}" IsReadOnly="True" />
+                        <DataGridTextColumn Header="长度5(mm)" Binding="{Binding length15, StringFormat='#'}" IsReadOnly="True" />
+                        <DataGridTextColumn Header="是否已经发送" Binding="{Binding Busy}" IsReadOnly="True"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </TabControl>
+        <Button Style="{StaticResource AduButton}" Foreground="Black" Content="导入外部套料方案" HorizontalAlignment="Right" Margin="0,13,30,0" Grid.Row="1" VerticalAlignment="Top" Width="130" Height="40" Click="Button_Click_Me"/>
+        <Button Style="{StaticResource AduButton}" Foreground="Black" Content="本页面使用说明" HorizontalAlignment="Left" Margin="30,13,0,0" Grid.Row="1" VerticalAlignment="Top" Width="130" Height="40" Click="Button_Instruction"/>
+        <Button Style="{StaticResource AduButton}" Foreground="Black" Content="发送数据至PLC" HorizontalAlignment="Right" Margin="0,13,200,0" Grid.Row="1" VerticalAlignment="Top" Width="130" Height="40" Click="Button_OutPut_Plc"/>
+    </Grid>
+</Window>

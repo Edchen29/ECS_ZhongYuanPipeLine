@@ -1,0 +1,62 @@
+﻿<mah:MetroWindow
+    xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+    x:Class="HHECS.TimerClient.WinMain"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HHECS.TimerClient"
+        mc:Ignorable="d"
+        Title="定时任务客户端" Height="450" Width="800" Closing="Window_Closing" x:Name="Win">
+    <Window.Resources>
+        <Style TargetType="Button" BasedOn="{StaticResource MetroFlatButton}">
+            <Setter Property="Margin" Value="5"/>
+            <!--<Setter Property="Width" Value="60"/>-->
+        </Style>
+    </Window.Resources>
+    <Grid x:Name="GridMain">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="80*"></ColumnDefinition>
+            <ColumnDefinition Width="20*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <GroupBox  Header="计划任务列表" Grid.Column="0">
+            <DataGrid x:Name="DGMain" AutoGenerateColumns="False" IsReadOnly="True">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Id" Binding="{Binding Id}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="名称" Binding="{Binding Name}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="路径" Binding="{Binding Url}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="接口" Binding="{Binding Api}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="参数" Binding="{Binding Param}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Corn表达式" Binding="{Binding Corn}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Corn排除表达式" Binding="{Binding ExcludesCorn}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="状态" Binding="{Binding Status}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="最后一次执行状态" Binding="{Binding ExcuteStatus}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="创建人" Binding="{Binding CreatedBy}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="创建时间" Binding="{Binding Created}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="更新人" Binding="{Binding UpdatedBy}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="更新时间" Binding="{Binding Updated}"></DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </GroupBox>
+        <GridSplitter Width="5"></GridSplitter>
+        <DockPanel x:Name="SPMain" Grid.Column="1">
+            <GroupBox Header="当前信息" DockPanel.Dock="Top">
+                <TextBlock x:Name="TBUser">用户：</TextBlock>
+            </GroupBox>
+            <GroupBox DockPanel.Dock="Top">
+                <GroupBox.Header>操作</GroupBox.Header>
+                <WrapPanel x:Name="WPOperation" Orientation="Horizontal" HorizontalAlignment="Left">
+                    <Button x:Name="BtnQuery" Click="BtnQuery_Click">刷新</Button>
+                    <Button x:Name="BtnNew" Click="BtnNew_Click">新建</Button>
+                    <Button x:Name="BtnEdit" Click="BtnEdit_Click">修改</Button>
+                    <Button x:Name="BtnDelete" Click="BtnDelete_Click">删除</Button>
+                    <Button x:Name="BtnExcute" Click="BtnExcute_Click">执行</Button>
+                    <Button x:Name="BtnStop" Click="BtnStop_Click">停止</Button>
+                    <Button x:Name="BtnExcuteOnce" Click="BtnExcuteOnce_Click">手动触发</Button>
+                </WrapPanel>
+            </GroupBox>
+        </DockPanel>
+       
+
+    </Grid>
+</mah:MetroWindow>

@@ -1,0 +1,76 @@
+﻿<win:BaseWindow
+    xmlns:win="clr-namespace:HHECS.View.Win" x:Class="HHECS.View.CacheInfo.WinCacheMaterialAddOrEdit"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HHECS.View.CacheInfo"
+        mc:Ignorable="d"
+        Title="CacheMaterialAddOrEdit" Height="400" Width="500" ResizeMode="NoResize" SizeToContent="WidthAndHeight" Loaded="Window_Loaded">
+    <Window.Resources>
+        <Style TargetType="StackPanel">
+            <Setter Property="Orientation" Value="Horizontal"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="10,5,10,5"/>
+        </Style>
+        <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+        <Style TargetType="TextBox" BasedOn="{StaticResource BaseTextBoxStyle}">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Width" Value="100"/>
+        </Style>
+    </Window.Resources>
+    <Grid x:Name="GridMain">
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Row="0" Grid.Column="0">
+            <TextBlock>工序监控ID：</TextBlock>
+            <TextBox x:Name ="TxtCacheMaterialstepTraceId" Text="{Binding stepTraceId}"></TextBox>
+        </StackPanel>
+        <StackPanel Grid.Row="0" Grid.Column="1">
+            <TextBlock>站台：</TextBlock>
+            <ComboBox  x:Name="CbxStation" SelectedValue="{Binding StationCode}"></ComboBox>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.Column="0">
+            <TextBlock>状态：</TextBlock>
+            <ComboBox  x:Name="CbxCacheMaterialStatus" SelectedValue="{Binding Status}"></ComboBox>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.Column="1">
+            <TextBlock>物料类型：</TextBlock>
+            <TextBox x:Name="TxtCacheMaterialWcsProductType" Text="{Binding WcsProductType}"></TextBox>
+        </StackPanel>
+        <StackPanel Grid.Row="2" Grid.Column="0">
+            <TextBlock>物料长度：</TextBlock>
+            <TextBox x:Name="TxtCacheMaterialMaterialLength" Text="{Binding MaterialLength}"></TextBox>
+        </StackPanel>
+        <StackPanel Grid.Row="2" Grid.Column="1">
+            <TextBlock>物料壁厚：</TextBlock>
+            <TextBox x:Name="TxtCacheMaterialThickness" Text="{Binding Thickness}"></TextBox>
+        </StackPanel>
+        <StackPanel Grid.Row="3" Grid.Column="0">
+            <TextBlock>物料外径：</TextBlock>
+            <TextBox x:Name="TxtCacheMaterialDiameter" Text="{Binding Diameter}"></TextBox>
+        </StackPanel>
+        
+
+        <StackPanel HorizontalAlignment="Right" Grid.Row="4">
+            <Button x:Name="BtnSave" Click="BtnSave_Click" Margin="2">保存</Button>
+            <Button x:Name="BtnCancel" Click="BtnCancel_Click" Margin="2">取消</Button>
+        </StackPanel>
+    </Grid>
+</win:BaseWindow>

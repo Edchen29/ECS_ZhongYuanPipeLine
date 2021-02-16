@@ -1,0 +1,71 @@
+﻿<UserControl x:Class="HHECS.Controls.CarInfo"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:HHECS.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="550" Width="585" FontSize="16px">
+    <UserControl.Resources>
+        <Style x:Key="labStyle" TargetType="{x:Type Label}" >
+            <Setter Property="Foreground" Value="Blue"/>
+            <Setter Property="Margin" Value="0,0"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+        </Style>
+    </UserControl.Resources>
+
+    <Grid Height="550" >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="92*"/>
+            <ColumnDefinition Width="19*"/>
+            <ColumnDefinition Width="33*"/>
+            <ColumnDefinition Width="65*"/>
+            <ColumnDefinition Width="37*"/>
+            <ColumnDefinition Width="339*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="141*"/>
+            <RowDefinition Height="359*"/>
+        </Grid.RowDefinitions>
+        <Canvas Height="550" Margin="0,3,0,3" Background="#FFEEEEEE" Grid.RowSpan="2" Grid.ColumnSpan="6">
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="小车编码:" VerticalAlignment="Top" FontSize="16" Canvas.Left="19" Canvas.Top="44"/>
+            <TextBlock x:Name="Code1" Canvas.Left="116" TextWrapping="Wrap"  Canvas.Top="28"/>
+            <TextBlock Canvas.Left="221" TextWrapping="Wrap" Text="主任务号:" Canvas.Top="86" RenderTransformOrigin="1.017,0.474"/>
+            <TextBlock Canvas.Left="21" TextWrapping="Wrap" Text="子任务号:" Canvas.Top="170" RenderTransformOrigin="0.51,0.551"/>
+            <TextBox x:Name="txt_wcsRow" Height="22" Canvas.Left="278" TextWrapping="Wrap" Canvas.Top="216" Width="40" RenderTransformOrigin="0.481,0.395"/>
+            <Button x:Name="btn_resetCommand" Content="删除任务" Canvas.Left="17" Margin="0" Canvas.Top="261" Width="104" Height="33" Background="red" FontSize="16" Click="btn_CommandDelete_Click"/>
+            <Label x:Name="lab_hasPallet" Style="{DynamicResource labStyle}" Content="未获取" Canvas.Left="317" Canvas.Top="38" RenderTransformOrigin="-6.236,0.83" Width="65" />
+            <Label x:Name="lab_carNo" Style="{DynamicResource labStyle}" Content="未获取" Canvas.Left="94" Canvas.Top="39" RenderTransformOrigin="-0.241,0.516" Width="58" Height="30" />
+            <Label x:Name="lab_taskHeaderId" Style="{DynamicResource labStyle}" Content="未获取" Canvas.Left="317" Canvas.Top="82" RenderTransformOrigin="0.392,0.493" Width="71" />
+
+            <Label x:Name="lab_taskCarId" Style="{DynamicResource labStyle}" Content="未获取" Canvas.Left="98" Canvas.Top="165" RenderTransformOrigin="0.497,0.493" Width="72" />
+            <TextBlock Canvas.Left="221" TextWrapping="Wrap" Text="有货:" Canvas.Top="44" RenderTransformOrigin="-0.194,0.429"/>
+            <TextBlock Canvas.Left="21" TextWrapping="Wrap" Text="作业类型:" Canvas.Top="86" RenderTransformOrigin="5.751,0.989"/>
+            <Label x:Name="lab_actionType" Style="{DynamicResource labStyle}" Content="未获取" Canvas.Left="95" Canvas.Top="82" Width="101" />
+            <TextBlock Canvas.Left="221" TextWrapping="Wrap" Text="设备状态:" Canvas.Top="129" RenderTransformOrigin="0.628,0.52"/>
+            <Label x:Name="lab_carStatus" Style="{DynamicResource labStyle}" Content="未获取" Canvas.Left="317" Canvas.Top="128" Width="68" RenderTransformOrigin="0.363,0.557" />
+            <TextBlock Canvas.Left="21" TextWrapping="Wrap" Text="行:" Canvas.Top="221" RenderTransformOrigin="0.517,2.185"/>
+            <Button x:Name="Btn_Reset" Content="复位" Canvas.Left="128" Canvas.Top="260"  Width="104" Height="33" Background="Red" FontSize="16" Margin="0" Click="Btn_Reset_Click"/>
+
+
+
+
+
+            <Button x:Name="Btn_controlMode" Content="切换模式" Canvas.Left="238" Margin="0" Canvas.Top="260" Width="104" Height="33" Background="Yellow" FontSize="16"  Click="Btn_controlMode_Click"/>
+            <TextBlock Canvas.Left="21" TextWrapping="Wrap" Text="控制模式:" Canvas.Top="125" RenderTransformOrigin="5.751,0.989"/>
+            <Label x:Name="lab_controlMode" Style="{DynamicResource labStyle}" Content="未获取" Canvas.Left="98" Canvas.Top="120" />
+            <Label x:Name="lab_Name" HorizontalContentAlignment="Center" Style="{DynamicResource labStyle}" FontWeight="Bold" FontSize="18" VerticalContentAlignment="Center" HorizontalAlignment="Center" Content="小车名" Canvas.Left="254" RenderTransformOrigin="2.516,-1.185"/>
+            <Button x:Name="Btn_ReSend" Content="任务重发" Canvas.Left="347" Margin="0" Canvas.Top="260" Width="104" Height="33" Background="Yellow" FontSize="16"  Click="Btn_ReSend_Click"/>
+
+            <Button x:Name="Btn_updateLocation" Content="更新位置" Canvas.Left="349"  Canvas.Top="213" Width="102" Height="33" Background="Yellow" FontSize="16" Click="Btn_updateLocation_Click" Margin="0" RenderTransformOrigin="0.423,0.333"/>
+            <Label x:Name="lab_Row" Style="{DynamicResource labStyle}" Content="未获取" Canvas.Left="95" Canvas.Top="216" Width="60" RenderTransformOrigin="-3.402,1.452" />
+            <TextBlock Canvas.Left="221" TextWrapping="Wrap" Text="设置行:" Canvas.Top="221"/>
+
+
+        </Canvas>
+        <ListBox x:Name="list_Alarm" Grid.Column="0" Margin="0,148.8,-0.2,4.4" Grid.Row="1" Grid.ColumnSpan="6" >
+            <TextBlock Text="报警信息："/>
+        </ListBox>
+    </Grid>
+</UserControl>

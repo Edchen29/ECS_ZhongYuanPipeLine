@@ -1,0 +1,60 @@
+﻿<win:HideCloseWindow
+    xmlns:win="clr-namespace:HHECS.View.Win" x:Class="HHECS.View.LocationInfo.WinPortStockerStation"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+         xmlns:control="clr-namespace:HHECS.Model.Controls;assembly=HHECS.Model"
+    xmlns:convert="clr-namespace:HHECS.Model.ValueConverter;assembly=HHECS.Model"
+    mc:Ignorable="d"
+        Title="出入口与堆垛机的站台映射信息" Height="450" Width="800" Loaded="Window_Loaded">
+    <Window.Resources>
+        <!--<convert:PortConverter x:Key="PortConverter"></convert:PortConverter>-->
+    </Window.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="240"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="1">
+            <TextBlock HorizontalAlignment="Left" Margin="23,24,0,0" TextWrapping="Wrap" Text="出入口：" VerticalAlignment="Top" FontSize="14"/>
+            <TextBlock HorizontalAlignment="Left" Margin="38,71,0,0" TextWrapping="Wrap" Text="巷道：" VerticalAlignment="Top" FontSize="14"/>
+            <TextBlock HorizontalAlignment="Left" Margin="11,178,0,0" TextWrapping="Wrap" Text="接出站台：" VerticalAlignment="Top" FontSize="14"/>
+            <TextBox x:Name="txt_Port" HorizontalAlignment="Left" Height="23" Margin="87,22,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" FontSize="14"/>
+            <TextBox x:Name="txt_Roadway" HorizontalAlignment="Left" Height="23" Margin="87,67,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" FontSize="14"/>
+             <TextBlock HorizontalAlignment="Left" Margin="11,123,0,0" TextWrapping="Wrap" Text="接入站台：" VerticalAlignment="Top" FontSize="14"/>
+            <ComboBox x:Name="cbx_StationOut" HorizontalAlignment="Left" Margin="89,171,0,0" VerticalAlignment="Top" Width="120" FontSize="14" Height="41"/>
+            <Button x:Name="btn_Query" Content="查询" HorizontalAlignment="Left" Margin="132,253,0,0" VerticalAlignment="Top" Width="75" Click="btn_Query_Click" Tag="location:query"/>
+            <Button x:Name="btn_Edit" Content="修改" HorizontalAlignment="Left" Margin="36,253,0,0" VerticalAlignment="Top" Width="75" Click="btn_Edit_Click" Tag="location:edit"/>
+            <Button x:Name="BtnAdd" Content="新增" HorizontalAlignment="Left" Margin="36,298,0,0" VerticalAlignment="Top" Width="75" Click="BtnAdd_Click" Tag="location:add"/>
+            <Button x:Name="BtnDelete" Content="删除" HorizontalAlignment="Left" Margin="132,298,0,0" VerticalAlignment="Top" Width="75" Click="BtnDelete_Click" Tag="location:delete"/>
+           
+        </Grid>
+
+        <DockPanel Grid.Column="0">
+            <control:DataPager x:Name="page" DockPanel.Dock="Bottom" PageIndex="{Binding PageIndex,Mode=TwoWay}" PageSize="{Binding PageSize}" TotalCount="{Binding TotalCount}"
+                                   PageChanged="page_PageChanged"></control:DataPager>
+            <DataGrid x:Name="dgv_1">
+                <DataGrid.Columns>
+                    <!--<DataGridTemplateColumn>
+                    <DataGridTemplateColumn.HeaderTemplate>
+                        <DataTemplate>
+                            <CheckBox x:Name="CheckAll" Click="CheckAll_Click"  Width="42" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.HeaderTemplate>
+                </DataGridTemplateColumn>-->
+                    <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
+                    <DataGridTextColumn Header="口编码" Binding="{Binding Port}"/>
+                    <DataGridTextColumn Header="口名称" Binding="{Binding PortName}"/>
+                    <DataGridTextColumn Header="巷道编码" Binding="{Binding Roadway}"/>
+                    <DataGridTextColumn Header="接入站台" Binding="{Binding StationIn}"/>
+                    <DataGridTextColumn Header="接出站台" Binding="{Binding StationOut}"/>
+                    <!--<DataGridTextColumn Header="状态" Binding="{Binding State}"/>
+                    <DataGridTextColumn Header="启用" Binding="{Binding Enable}"/>-->
+                    <!--<DataGridTextColumn Header="状态" Binding="{Binding Status,Converter={StaticResource PortConverter}}"/>-->
+                </DataGrid.Columns>
+            </DataGrid>
+        </DockPanel>
+    </Grid>
+</win:HideCloseWindow>

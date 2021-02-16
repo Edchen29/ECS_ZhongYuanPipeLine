@@ -1,0 +1,309 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F6C083E0-8CF8-430E-8292-778882CB2D50}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>HHECS.Model</RootNamespace>
+    <AssemblyName>HHECS.Model</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <LangVersion>8.0</LangVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Interop.OPCAutomation, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>PLCHelper\DLL\Interop.OPCAutomation.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ApiModel\HHWMSApiModel\DestinationAreaRequestModel.cs" />
+    <Compile Include="ApiModel\HHWMSApiModel\DestinationAreaResponseModel.cs" />
+    <Compile Include="ApiModel\WCSApiModel\ApiBusModel.cs" />
+    <Compile Include="ApiModel\WCSApiModel\ApiResultModel.cs" />
+    <Compile Include="ApiModel\HHWMSApiModel\LocationAssignRspModelInfo.cs" />
+    <Compile Include="ApiModel\HHWMSApiModel\LocationRequestModelInfo.cs" />
+    <Compile Include="ApiModel\WCSApiModel\StationRequestInfoModel.cs" />
+    <Compile Include="ApiModel\WCSApiModel\StationResponseInfoModel.cs" />
+    <Compile Include="ApiModel\WCSApiModel\TaskCancelModel.cs" />
+    <Compile Include="ApiModel\WCSApiModel\TaskCreateModel.cs" />
+    <Compile Include="ApiModel\WCSApiModel\TaskDetailCreateModel.cs" />
+    <Compile Include="ApiModel\WCSApiModel\TaskPostModel.cs" />
+    <Compile Include="ApiModel\WCSApiModel\TaskQueryModel.cs" />
+    <Compile Include="ApiModel\WCSApiModel\TaskQueryResponseModel.cs" />
+    <Compile Include="BLLModel\BllAGVResult.cs" />
+    <Compile Include="BLLModel\BllException.cs" />
+    <Compile Include="BLLModel\BllResult.cs" />
+    <Compile Include="BLLModel\BllResultCode.cs" />
+    <Compile Include="BLLModel\BllResultFactory.cs" />
+    <Compile Include="BLLModel\ResponseModel.cs" />
+    <Compile Include="Common\CommonForPing.cs" />
+    <Compile Include="Common\Generics.cs" />
+    <Compile Include="Common\Language\DefaultLanguage.cs" />
+    <Compile Include="Common\Language\English.cs" />
+    <Compile Include="Common\MatchHelp.cs" />
+    <Compile Include="Common\PipeLineModel.cs" />
+    <Compile Include="Common\StringResources.cs" />
+    <Compile Include="Common\ConverHelper.cs" />
+    <Compile Include="Common\LEDExcute.cs" />
+    <Compile Include="Common\Logger.cs" />
+    <Compile Include="Common\CommonHelper.cs" />
+    <Compile Include="Common\Delegates.cs" />
+    <Compile Include="Common\Extends.cs" />
+    <Compile Include="Common\LogEventArgs.cs" />
+    <Compile Include="Common\OperateResult.cs" />
+    <Compile Include="Common\SoftBasic.cs" />
+    <Compile Include="Common\StationModel.cs" />
+    <Compile Include="Common\Transfer\ByteTransformBase.cs" />
+    <Compile Include="Common\Transfer\ByteTransformHelper.cs" />
+    <Compile Include="Common\Transfer\DataFormat.cs" />
+    <Compile Include="Common\Transfer\IByteTransform.cs" />
+    <Compile Include="Common\Transfer\RegularByteTransform.cs" />
+    <Compile Include="Common\Transfer\ReverseBytesTransform.cs" />
+    <Compile Include="Common\Transfer\ReverseWordTransform.cs" />
+    <Compile Include="Controls\TransformCanvas.cs" />
+    <Compile Include="Controls\DataPager.xaml.cs">
+      <DependentUpon>DataPager.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\LogInfo.xaml.cs">
+      <DependentUpon>LogInfo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\NumericBox.cs" />
+    <Compile Include="Controls\PageChangedEventArgs.cs" />
+    <Compile Include="Controls\PageChangingEventArgs.cs" />
+    <Compile Include="Entities\Car.cs" />
+    <Compile Include="Entities\ContentLog.cs" />
+    <Compile Include="Entities\CutPlan.cs" />
+    <Compile Include="Entities\DefectCode.cs" />
+    <Compile Include="Entities\EbomDetail.cs" />
+    <Compile Include="Entities\EbomHeader.cs" />
+    <Compile Include="Entities\EquipmentAlarmLog.cs" />
+    <Compile Include="Entities\EquipmentAlarmText.cs" />
+    <Compile Include="Entities\EquipmentItem.cs" />
+    <Compile Include="Entities\EquipmentMaintainLog.cs" />
+    <Compile Include="Entities\EquipmentMaintainRule.cs" />
+    <Compile Include="Entities\EquipmentMonitor.cs" />
+    <Compile Include="Entities\EquipmentStatus.cs" />
+    <Compile Include="Entities\EquipmentStatusLog.cs" />
+    <Compile Include="Entities\EquipmentTypeTemplate.cs" />
+    <Compile Include="Entities\Factory.cs" />
+    <Compile Include="Entities\InterfaceLog.cs" />
+    <Compile Include="Entities\Inventory.cs" />
+    <Compile Include="Entities\InventoryAlert.cs" />
+    <Compile Include="Entities\InventoryTransaction.cs" />
+    <Compile Include="Entities\LED.cs" />
+    <Compile Include="Entities\Line.cs" />
+    <Compile Include="Entities\LthMeasuringCache.cs" />
+    <Compile Include="Entities\Material.cs" />
+    <Compile Include="Entities\MaterialCallDetail.cs" />
+    <Compile Include="Entities\MaterialCallHeader.cs" />
+    <Compile Include="Entities\MaterialDemand.cs" />
+    <Compile Include="Entities\MaterialDistributeTaskDetail.cs" />
+    <Compile Include="Entities\MaterialDistributeTaskHeader.cs" />
+    <Compile Include="Entities\MaterialType.cs" />
+    <Compile Include="Entities\MaterialUnit.cs" />
+    <Compile Include="Entities\MaterialUnitMultiple.cs" />
+    <Compile Include="Entities\MbomDetail.cs" />
+    <Compile Include="Entities\MbomHeader.cs" />
+    <Compile Include="Entities\OrderAlert.cs" />
+    <Compile Include="Entities\OrderDetiail.cs" />
+    <Compile Include="Entities\OrderHeader.cs" />
+    <Compile Include="Entities\PbomDetail.cs" />
+    <Compile Include="Entities\PbomHeader.cs" />
+    <Compile Include="Entities\PipeOrder.cs" />
+    <Compile Include="Entities\PortSRMStationRelative.cs" />
+    <Compile Include="Entities\PrintMiddleModel.cs" />
+    <Compile Include="Entities\ProductBarcodeRule.cs" />
+    <Compile Include="Entities\ProductDetail.cs" />
+    <Compile Include="Entities\ProductFinishedStation.cs" />
+    <Compile Include="Entities\ProductHeader.cs" />
+    <Compile Include="Entities\Repair.cs" />
+    <Compile Include="Entities\RepairCode.cs" />
+    <Compile Include="Entities\SerialNumber.cs" />
+    <Compile Include="Entities\Station.cs" />
+    <Compile Include="Entities\StationCache.cs" />
+    <Compile Include="Entities\Step.cs" />
+    <Compile Include="Entities\StepStation.cs" />
+    <Compile Include="Entities\StepTrace.cs" />
+    <Compile Include="Entities\StepTraceHistory.cs" />
+    <Compile Include="Entities\StepTraceLog.cs" />
+    <Compile Include="Entities\SysDictData.cs" />
+    <Compile Include="Entities\SysDictType.cs" />
+    <Compile Include="Entities\SysEntity.cs" />
+    <Compile Include="Entities\CarTask.cs" />
+    <Compile Include="Entities\Warehouse.cs" />
+    <Compile Include="Entities\WareHouseAlarm.cs" />
+    <Compile Include="Entities\WcsConfig.cs" />
+    <Compile Include="Entities\WcsToRecs.cs" />
+    <Compile Include="Entities\WMSTask.cs" />
+    <Compile Include="Entities\Workshop.cs" />
+    <Compile Include="Enums\Accounts.cs" />
+    <Compile Include="Enums\Car\Car.cs" />
+    <Compile Include="Enums\Car\CarTaskType.cs" />
+    <Compile Include="Enums\CommitFlag.cs" />
+    <Compile Include="Enums\ConfigStrings.cs" />
+    <Compile Include="Enums\CreateTypeFlag.cs" />
+    <Compile Include="Enums\Machine\MachineProps.cs" />
+    <Compile Include="Enums\Machine\MachineStatus.cs" />
+    <Compile Include="Enums\PipeLine\StationCacheStatus.cs" />
+    <Compile Include="Enums\PipeLine\PipeLineGoods.cs" />
+    <Compile Include="Enums\PipeLine\PipeLineProps.cs" />
+    <Compile Include="Enums\Task\DistributeStatus.cs" />
+    <Compile Include="Enums\Machine\MachineArriveResult.cs" />
+    <Compile Include="Enums\Machine\MachineMessageFlag.cs" />
+    <Compile Include="Enums\EquipmentPropType.cs" />
+    <Compile Include="Enums\InOutFlag.cs" />
+    <Compile Include="Enums\LogTitle.cs" />
+    <Compile Include="Enums\PutTypeFlag.cs" />
+    <Compile Include="Enums\Truss\TrussForkAction.cs" />
+    <Compile Include="Enums\Truss\TrussForTaskFlag.cs" />
+    <Compile Include="Enums\Truss\TrussTaskFlag.cs" />
+    <Compile Include="Enums\SRM\SRMSendAgain.cs" />
+    <Compile Include="Enums\SRM\SSRMNewTaskFlag.cs" />
+    <Compile Include="Enums\SRM\SSRMTaskCompleteFlag.cs" />
+    <Compile Include="Enums\StatusString.cs" />
+    <Compile Include="Enums\SysConst.cs" />
+    <Compile Include="Enums\Task\StepTraceStatus.cs" />
+    <Compile Include="LEDHelper\DefaultLEDImplement.cs" />
+    <Compile Include="LEDHelper\ILED.cs" />
+    <Compile Include="LEDHelper\LEDComponent\DefaultLEDComponent\Display.cs" />
+    <Compile Include="LEDHelper\LEDComponent\DefaultLEDComponent\Led5kSDK.cs" />
+    <Compile Include="LEDHelper\LEDComponent\DefaultLEDComponent\LEDCreateOption.cs" />
+    <Compile Include="LEDHelper\LEDComponent\DefaultLEDComponent\LED.cs" />
+    <Compile Include="LEDHelper\LEDComponent\DefaultLEDComponent\LedInfo.cs" />
+    <Compile Include="PLCHelper\Implement\HslModBusImplement.cs" />
+    <Compile Include="PLCHelper\Implement\HslSiemensImplement.cs" />
+    <Compile Include="PLCHelper\Implement\OPCImplement.cs" />
+    <Compile Include="PLCHelper\Implement\S7Implement.cs" />
+    <Compile Include="PLCHelper\Interfaces\IPLC.cs" />
+    <Compile Include="PLCHelper\PLCComponent\DataType.cs" />
+    <Compile Include="PLCHelper\PLCComponent\HslComponent\HslModbusDataEntity.cs" />
+    <Compile Include="PLCHelper\PLCComponent\HslComponent\HslSiemensDataEntity.cs" />
+    <Compile Include="PLCHelper\PLCComponent\HslComponent\ModbusHelper.cs" />
+    <Compile Include="PLCHelper\PLCComponent\HslComponent\SiemensHelper.cs" />
+    <Compile Include="PLCHelper\PLCComponent\HslComponent\ModbusBuildModel.cs" />
+    <Compile Include="PLCHelper\PLCComponent\HslComponent\SiemensPLCBuildModel.cs" />
+    <Compile Include="PLCHelper\PLCComponent\Sharp7Component\LockInt.cs" />
+    <Compile Include="PLCHelper\PLCComponent\Sharp7Component\PLCType.cs" />
+    <Compile Include="PLCHelper\PLCComponent\Sharp7Component\S7DataEntity.cs" />
+    <Compile Include="PLCHelper\PLCComponent\Sharp7Component\S7PLCHelper.cs" />
+    <Compile Include="PLCHelper\PLCComponent\Sharp7Component\Sharp7.cs" />
+    <Compile Include="PLCHelper\PLCComponent\SiemensArea.cs" />
+    <Compile Include="ValueConverter\CacheMaterialStatusConverter.cs" />
+    <Compile Include="ValueConverter\CarTaskTypeConverter.cs" />
+    <Compile Include="ValueConverter\CommitFlagConverter.cs" />
+    <Compile Include="ValueConverter\CreateTypeFlagConverter.cs" />
+    <Compile Include="ValueConverter\CutPlanStatusConverter.cs" />
+    <Compile Include="ValueConverter\InOutFlagConverter.cs" />
+    <Compile Include="ValueConverter\LocationStatusConverter.cs" />
+    <Compile Include="ValueConverter\SRMSendAgainConverter.cs" />
+    <Compile Include="ValueConverter\StringToIntConverter.cs" />
+    <Compile Include="Entities\Container.cs" />
+    <Compile Include="Entities\BaseModel.cs" />
+    <Compile Include="Entities\JobEntity.cs" />
+    <Compile Include="Enums\LocationStatus.cs" />
+    <Compile Include="Entities\TaskDetailEntityDeleted.cs" />
+    <Compile Include="Entities\TaskEntityDeleted.cs" />
+    <Compile Include="Enums\Station\StationArriveResult.cs" />
+    <Compile Include="Enums\Station\StationLoadStatus.cs" />
+    <Compile Include="Enums\Station\StationMessageFlag.cs" />
+    <Compile Include="Enums\Station\StationMessageType.cs" />
+    <Compile Include="Enums\Station\StationTaskLimit.cs" />
+    <Compile Include="Enums\Task\TaskStageFlag.cs" />
+    <Compile Include="Enums\JobStatus.cs" />
+    <Compile Include="Enums\SRM\SuperSRMTaskMode1.cs" />
+    <Compile Include="Enums\Task\TaskAccount.cs" />
+    <Compile Include="Enums\SRM\SRMTaskExcuteStatus.cs" />
+    <Compile Include="Enums\SRM\SRMOperationModel.cs" />
+    <Compile Include="Enums\SRM\SRMTaskLimit.cs" />
+    <Compile Include="Enums\SRM\SRMForkAction.cs" />
+    <Compile Include="Enums\SRM\SRMForkTaskFlag.cs" />
+    <Compile Include="Enums\SRM\SRMForkRowType.cs" />
+    <Compile Include="Enums\Task\TaskEntityStatus.cs" />
+    <Compile Include="Enums\LogLevel.cs" />
+    <Compile Include="Enums\WMSUrls.cs" />
+    <Compile Include="Entities\Location.cs" />
+    <Compile Include="Entities\Config.cs" />
+    <Compile Include="Entities\Dict.cs" />
+    <Compile Include="Entities\DictDetail.cs" />
+    <Compile Include="Entities\Equipment.cs" />
+    <Compile Include="Entities\EquipmentProp.cs" />
+    <Compile Include="Entities\EquipmentType.cs" />
+    <Compile Include="Entities\MenuOperation.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Entities\Role.cs" />
+    <Compile Include="Entities\TaskDetailEntity.cs" />
+    <Compile Include="Entities\TaskEntity.cs" />
+    <Compile Include="Enums\Task\TaskType.cs" />
+    <Compile Include="Entities\User.cs" />
+    <Compile Include="Rules\PositiveInterRule.cs" />
+    <Compile Include="ValueConverter\TaskCarStatusConverter.cs" />
+    <Compile Include="ValueConverter\TaskStageFlagConverter.cs" />
+    <Compile Include="ValueConverter\TaskStatusConverter.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Controls\DataPager.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\LogInfo.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="LEDHelper\DLL\Led5kSDK.dll" />
+    <Content Include="PLCHelper\DLL\Interop.OPCAutomation.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HslCommunication_Net45\HslCommunication_Net45.csproj">
+      <Project>{7F8029DA-1B94-4B1D-B91F-5B21DBF2F3A2}</Project>
+      <Name>HslCommunication_Net45</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

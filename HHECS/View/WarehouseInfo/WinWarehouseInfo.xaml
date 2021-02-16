@@ -1,0 +1,41 @@
+﻿<win:HideCloseWindow
+    xmlns:win="clr-namespace:HHECS.View.Win"
+    x:Class="HHECS.View.WarehouseInfo.WinWarehouseInfo"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HHECS.View.WarehouseInfo"
+    xmlns:control1="clr-namespace:HHECS.Model.Controls;assembly=HHECS.Model"
+    mc:Ignorable="d"
+        Title="仓库管理" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="240"/>
+            <ColumnDefinition Width="277*"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock HorizontalAlignment="Left" Margin="45,70,0,0" TextWrapping="Wrap" Text="编码：" VerticalAlignment="Top" FontSize="14"/>
+        <TextBox x:Name="txt_Code1" HorizontalAlignment="Left" Height="23" Margin="87,68,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" FontSize="14"/>
+        <Button x:Name="btn_Query" Content="查询" HorizontalAlignment="Left" Margin="30,127,0,0" VerticalAlignment="Top" Width="75" Click="Btn_Query_Click" RenderTransformOrigin="-0.658,0.593"/>
+        <Button x:Name="btn_Close" Content="关闭" HorizontalAlignment="Left" Margin="132,127,0,0" VerticalAlignment="Top" Width="75" Click="Btn_Close_Click"/>
+        <DockPanel Grid.Column="1">
+            <control1:DataPager x:Name="page" DockPanel.Dock="Bottom" PageIndex="{Binding PageIndex,Mode=TwoWay}" PageSize="{Binding PageSize}" TotalCount="{Binding TotalCount}"
+                                   PageChanged="page_PageChanged"></control1:DataPager>
+            <DataGrid x:Name="dgv_1" AutoGenerateColumns="False" IsReadOnly="True">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
+                    <DataGridTextColumn Header="仓库编码" Binding="{Binding Code}"/>
+                    <DataGridTextColumn Header="仓库名字" Binding="{Binding Name}"/>
+                    <DataGridTextColumn Header="备注" Binding="{Binding Remark}"/>
+                    <DataGridTextColumn Header="创建时间" Binding="{Binding Created}"/>
+                    <DataGridTextColumn Header="创建用户" Binding="{Binding CreatedBy}"/>
+                    <DataGridTextColumn Header="更新时间" Binding="{Binding Updated}"/>
+                    <DataGridTextColumn Header="更新用户" Binding="{Binding UpdatedBy}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            <Button Content="Button" Height="386.4" Margin="0" VerticalAlignment="Top" Width="75"/>
+        </DockPanel>
+
+
+    </Grid>
+</win:HideCloseWindow>

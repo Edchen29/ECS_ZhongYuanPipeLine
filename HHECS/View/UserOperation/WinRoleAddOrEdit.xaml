@@ -1,0 +1,65 @@
+﻿<base:BaseWindow
+        x:Class="HHECS.View.UserOperation.WinRoleAddOrEdit"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HHECS.View.UserOperation"
+        xmlns:base ="clr-namespace:HHECS.View.Win"
+        xmlns:model="clr-namespace:HHECS.Model.Entities;assembly=HHECS.Model"
+        mc:Ignorable="d"
+        Title="RoleAddOrEdit" Height="450" Width="388.983" Closing="Window_Closing" ResizeMode="NoResize">
+    <Window.Resources>
+        <Style TargetType="StackPanel">
+            <Setter Property="Orientation" Value="Horizontal"/>
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="0,2,10,2"/>
+        </Style>
+        <Style TargetType="TextBox" BasedOn="{StaticResource BaseTextBoxStyle}">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Width" Value="300"/>
+        </Style>
+        <Style TargetType="Button" BasedOn="{StaticResource BaseButtonStyle}">
+            <Setter Property="Margin" Value="2"></Setter>
+        </Style>
+    </Window.Resources>
+    <Grid x:Name="GridMain">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0">
+            <TextBlock Text="角色名：" />
+            <TextBox x:Name="TxtName" Text="{Binding RoleName}" />
+        </StackPanel>
+        <StackPanel Grid.Row="1">
+            <TextBlock Text="备注：" />
+            <TextBox x:Name="TxtRemark" Text="{Binding Remark}" />
+
+        </StackPanel>
+        <TreeView x:Name="treeMain" Grid.Row="2" TreeViewItem.Selected="treeMain_Selected" >
+            <TreeView.ItemTemplate>
+                <HierarchicalDataTemplate DataType="{x:Type model:MenuOperation}" ItemsSource="{Binding Path=Children}">
+                    <StackPanel Orientation="Horizontal">
+                        <CheckBox IsChecked="{Binding HasPerm,Mode=TwoWay}" Tag="{Binding Id}" Click="CheckBox_Click" Margin="2"></CheckBox>
+                        <Image VerticalAlignment="Center" Source="{Binding Icon}" Width="16" Height="16" Margin="0,0,2,2"></Image>
+                        <TextBlock  Text="{Binding MenuName}"></TextBlock>
+                        <Image VerticalAlignment="Center" Source="{Binding EditIcon}" Margin="2,0,0,0"></Image>
+                        <StackPanel.ToolTip>
+                            <TextBlock Text="{Binding Remark}" TextWrapping="Wrap" MaxWidth="200" ></TextBlock>
+                        </StackPanel.ToolTip>
+                    </StackPanel>
+                </HierarchicalDataTemplate>
+            </TreeView.ItemTemplate>
+        </TreeView>
+        <StackPanel Grid.Row="3" HorizontalAlignment="Right">
+            <Button x:Name="BtnUpdate" Click="BtnUpdate_Click" Content="刷新" HorizontalAlignment="Left"  VerticalAlignment="Top"/>
+            <Button x:Name="BtnSave" Click="BtnSave_Click" Content="保存" HorizontalAlignment="Left"  VerticalAlignment="Top"/>
+            <Button x:Name="BtnCancel" Click="BtnCancel_Click" Content="取消" HorizontalAlignment="Left"  VerticalAlignment="Top"/>
+        </StackPanel>
+    </Grid>
+</base:BaseWindow>

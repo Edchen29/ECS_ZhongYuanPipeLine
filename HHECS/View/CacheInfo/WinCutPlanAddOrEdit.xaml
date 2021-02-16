@@ -1,0 +1,90 @@
+﻿<win:BaseWindow
+    xmlns:win="clr-namespace:HHECS.View.Win"  x:Class="HHECS.View.CacheInfo.WinCutPlanAddOrEdit"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HHECS.View.CacheInfo"
+    xmlns:useControl="clr-namespace:HHECS.Model.Controls;assembly=HHECS.Model"
+        mc:Ignorable="d"
+        Title="WinCutPlanAddOrEdit" Height="450" Width="800">
+    <Window.Resources>
+        <Style TargetType="StackPanel">
+            <Setter Property="Orientation" Value="Horizontal"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+        <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+        <Style TargetType="TextBox" BasedOn="{StaticResource BaseTextBoxStyle}">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="MinWidth" Value="120"/>
+        </Style>
+        <Style TargetType="useControl:NumericBox">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Width" Value="300"/>
+        </Style>
+        <Style TargetType="ComboBox" BasedOn="{StaticResource BaseComboBoxStyle}">
+            <Setter Property="MinWidth" Value="10"/>
+            <Setter Property="Height" Value="15"/>
+        </Style>
+        <Style TargetType="Button" BasedOn="{StaticResource BaseButtonStyle}">
+            <Setter Property="Margin" Value="2"/>
+        </Style>
+    </Window.Resources>
+    <Grid x:Name="GridMain">
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Row="0">
+            <TextBlock>工单编号：</TextBlock>
+            <TextBox x:Name="Txt_WONumber" Text="{Binding WONumber}"></TextBox>
+        </StackPanel>
+        <StackPanel Grid.Row="0" Grid.Column="1">
+            <TextBlock>原材料缓存位ID：</TextBlock>
+            <TextBox x:Name="Txt_stationCacheId" Text="{Binding stationCacheId}"></TextBox>
+        </StackPanel>
+        <StackPanel Grid.Row="1">
+            <TextBlock>原材料材质：</TextBlock>
+            <TextBox x:Name="Txt_WcsProductType" Text="{Binding WcsProductType}"></TextBox>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.Column="1">
+            <TextBlock>原材料长度：</TextBlock>
+            <TextBox x:Name="Txt_MaterialLength" Text="{Binding MaterialLength}"></TextBox>
+        </StackPanel>
+        <StackPanel Grid.Row="2" Grid.Column="0">
+            <TextBlock>原材料直径：</TextBlock>
+            <TextBox x:Name="Txt_Diameter" Text="{Binding Diameter}"></TextBox>
+        </StackPanel>
+        <StackPanel Grid.Row="2" Grid.Column="1">
+            <TextBlock>原材料壁厚：</TextBlock>
+            <TextBox x:Name="Txt_Thickness" Text="{Binding Thickness}"></TextBox>
+        </StackPanel>
+        <StackPanel Grid.Row="3" Grid.Column="0">
+            <TextBlock>已切割长度：</TextBlock>
+            <TextBox x:Name="Txt_Length" Text="{Binding Length}"></TextBox>
+        </StackPanel>
+        <StackPanel Grid.Row="3" Grid.Column="1">
+            <TextBlock>状态：</TextBlock>
+            <ComboBox x:Name="cbx_Status" SelectedValue="{Binding Status}"></ComboBox>
+        </StackPanel>
+
+        <StackPanel HorizontalAlignment="Right" Grid.Row="5" Grid.ColumnSpan="2">
+            <Button x:Name="BtnSave" Click="BtnSave_Click">保存</Button>
+            <Button x:Name="BtnCancel" Click="BtnCancel_Click">取消</Button>
+        </StackPanel>
+    </Grid>
+</win:BaseWindow>

@@ -1,0 +1,175 @@
+﻿<win:HideCloseWindow
+    xmlns:win="clr-namespace:HHECS.View.Win" x:Class="HHECS.View.EquipmentInfo.WinEquipment"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HHECS.View.EquipmentInfo"
+    xmlns:control="clr-namespace:HHECS.Model.Controls;assembly=HHECS.Model"
+    mc:Ignorable="d"
+        Title="设备管理" Height="450" Width="800">
+    <Window.Resources>
+        <Style TargetType="StackPanel" >
+            <Setter Property="Orientation" Value="Horizontal"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="Margin" Value="10,2,0,2"/>
+        </Style>
+        <Style TargetType="WrapPanel" >
+            <Setter Property="Orientation" Value="Horizontal"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="10,2,0,2"/>
+        </Style>
+
+        <Style TargetType="TextBox" BasedOn="{StaticResource BaseTextBoxStyle}">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Width" Value="120"/>
+        </Style>
+        <Style TargetType="Button" BasedOn="{StaticResource BaseButtonStyle}">
+            <Setter Property="Margin" Value="2"></Setter>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <TabControl>
+            <TabItem x:Name="TIMain" Header="设备">
+                <Grid x:Name="GridMain">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Border  Grid.Row="0" CornerRadius="6">
+                        <WrapPanel>
+                            <StackPanel>
+                                <TextBlock>设备编码：</TextBlock>
+                                <TextBox x:Name="TxtCode"></TextBox>
+                            </StackPanel>
+                            <StackPanel>
+                                <TextBlock>设备名：</TextBlock>
+                                <TextBox x:Name="TxtName"></TextBox>
+                            </StackPanel>
+                            <StackPanel>
+                                <TextBlock>设备类型：</TextBlock>
+                                <ComboBox x:Name="ComoboxType" Width="120"></ComboBox>
+                            </StackPanel>
+                            <StackPanel>
+                                <TextBlock>工作岛编号：</TextBlock>
+                                <ComboBox x:Name="WrokNo" Width="120"></ComboBox>
+                            </StackPanel>
+                        </WrapPanel>
+                    </Border>
+
+                    <StackPanel x:Name="SPEquipment" Grid.Row="1" HorizontalAlignment="Right">
+                        <Button Tag="equipment:query" x:Name="BtnQuery" Click="BtnQuery_Click">查询</Button>
+                        <Button Tag="equipment:viewDetails" x:Name="BtnViewDetail" Click="BtnViewDetail_Click">查看详细</Button>
+                        <Button Tag="equipment:add" x:Name="BtnAdd" Click="BtnAdd_Click">新增设备</Button>
+                        <Button Tag="equipment:add" x:Name="BtnCopy" Click="BtnCopy_Click">复制设备</Button>
+                        <Button Tag="equipment:edit" x:Name="BtnEdit" Click="BtnEdit_Click">编辑设备</Button>
+                        <Button Tag="equipment:delete" x:Name="BtnDelete" Click="BtnDelete_Click">删除设备</Button>
+                    </StackPanel>
+                    <DockPanel Grid.Row="2">
+                        <control:DataPager x:Name="page" DockPanel.Dock="Bottom" PageIndex="{Binding PageIndex,Mode=TwoWay}" PageSize="{Binding PageSize}" TotalCount="{Binding TotalCount}"
+                                   PageChanged="page_PageChanged" ></control:DataPager>
+                        <DataGrid x:Name="DGMain" >
+                            <DataGrid.RowStyle>
+                                <Style TargetType="{x:Type DataGridRow}" BasedOn="{StaticResource BaseDataGridRowStyle}">
+                                    <EventSetter Event="MouseDoubleClick" Handler="DataGridRow_MouseDoubleClick"/>
+                                </Style>
+                            </DataGrid.RowStyle>
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
+                                <DataGridTextColumn Header="设备编码" Binding="{Binding Code}"/>
+                                <DataGridTextColumn Header="设备名" Binding="{Binding Name}"/>
+                                <DataGridTextColumn Header="设备类型编码" Binding="{Binding EquipmentType.Code}"/>
+                                <DataGridTextColumn Header="设备类型名" Binding="{Binding EquipmentType.Name}"/>
+                                <DataGridTextColumn Header="IP" Binding="{Binding IP}"/>
+                                <DataGridTextColumn Header="plc地址块" Binding="{Binding BasePlcDB}"/>
+                                <DataGridTextColumn Header="连接名" Binding="{Binding ConnectName}"/>
+                                <DataGridTextColumn Header="自身地址" Binding="{Binding SelfAddress}"/>
+                                <DataGridTextColumn Header="前进地址" Binding="{Binding GoAddress}"/>
+                                <DataGridTextColumn Header="回退地址" Binding="{Binding BackAddress}"/>
+                                <DataGridTextColumn Header="区域" Binding="{Binding DestinationArea}"/>
+                                <DataGridTextColumn Header="巷道" Binding="{Binding RoadWay}"/>
+                                <DataGridTextColumn Header="站台索引" Binding="{Binding StationIndex}"/>
+                                <DataGridTextColumn Header="货叉-排-索引1" Binding="{Binding RowIndex1}"/>
+                                <DataGridTextColumn Header="货叉-排-索引2" Binding="{Binding RowIndex2}"/>
+                                <DataGridTextColumn Header="列索引" Binding="{Binding ColumnIndex}"/>
+                                <DataGridTextColumn Header="层索引" Binding="{Binding LayerIndex}"/>
+                                <DataGridTextColumn Header="扫码头IP" Binding="{Binding ScannerIP}"/>
+                                <DataGridTextColumn Header="LEDIP" Binding="{Binding LEDIP}"/>
+                                <DataGridTextColumn Header="描述" Binding="{Binding Description}"/>
+                                <DataGridCheckBoxColumn Header="启用" Binding="{Binding Enable}"/>
+                                <DataGridTextColumn Header="创建时间" Binding="{Binding Created}"/>
+                                <DataGridTextColumn Header="创建人" Binding="{Binding CreatedBy}"/>
+                                <DataGridTextColumn Header="更新时间" Binding="{Binding Updated}"/>
+                                <DataGridTextColumn Header="更新人" Binding="{Binding UpdatedBy}"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </DockPanel>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="TIDetail" Header="设备属性">
+                <Grid x:Name="GridDetail">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <WrapPanel  Grid.Row="0">
+                        <StackPanel>
+                            <TextBlock>设备编码：</TextBlock>
+                            <TextBox x:Name="TxtMainCode" IsReadOnly="true" Text="{Binding Code}"></TextBox>
+                        </StackPanel>
+                        <StackPanel>
+                            <TextBlock>设备名：</TextBlock>
+                            <TextBox x:Name="TxtMainName" IsReadOnly="true" Text="{Binding Name}"></TextBox>
+                        </StackPanel>
+                        <StackPanel>
+                            <TextBlock>描述：</TextBlock>
+                            <TextBox x:Name="TxtDescription" IsReadOnly="true" Text="{Binding Description}"></TextBox>
+                        </StackPanel>
+                    </WrapPanel>
+
+                    <StackPanel x:Name="SPEquipmentProps" HorizontalAlignment="Right" Grid.Row="1">
+                        <Button Tag="equipmentdetail:query" x:Name="BtnUpdateDetail" Click="BtnUpdateDetail_Click">刷新</Button>
+                        <Button Tag="equipmentdetail:save" x:Name="BtnSaveProp" Click="BtnSaveProp_Click">保存</Button>
+                        <Button Tag="equipmentdetail:delete" x:Name="BtnDeleteProp" Click="BtnDeleteProp_Click">删除</Button>
+                        <Button Tag="equipmentdetail:sync" x:Name="BtnSync" Click="BtnSync_Click">同步</Button>
+                    </StackPanel>
+
+                    <DataGrid x:Name="DGDetail" IsReadOnly="False" Grid.Row="2">
+                        <DataGrid.CellStyle>
+                            <Style TargetType="{x:Type DataGridCell}" BasedOn="{StaticResource BaseDataGridCellStyle}">
+                                <Style.Triggers>
+                                    <Trigger Property="IsReadOnly"  Value="False">
+                                        <Setter Property="Background" Value="GreenYellow">
+                                        </Setter>
+                                    </Trigger>
+
+                                </Style.Triggers>
+                            </Style>
+                        </DataGrid.CellStyle>
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Id" Binding="{Binding Id}" IsReadOnly="True"/>
+                            <!--<DataGridTextColumn Header="设备编码" Binding="{Binding EquipmentCode}"/>
+                                <DataGridTextColumn Header="设备名" Binding="{Binding EquipmentName}"/>-->
+                            <DataGridTextColumn Header="属性编码" Binding="{Binding EquipmentTypeTemplateCode}" IsReadOnly="True"/>
+                            <DataGridTextColumn Header="OPC句柄" Binding="{Binding ServerHandle}" IsReadOnly="True"/>
+                            <DataGridTextColumn Header="地址" Binding="{Binding Address}" IsReadOnly="False"/>
+                            <DataGridTextColumn Header="值" Binding="{Binding Value}" IsReadOnly="False"/>
+                            <DataGridTextColumn Header="备注" Binding="{Binding Remark}" IsReadOnly="False"/>
+                            <DataGridTextColumn Header="创建时间" Binding="{Binding Created}" IsReadOnly="True"/>
+                            <DataGridTextColumn Header="创建人" Binding="{Binding CreatedBy}" IsReadOnly="True"/>
+                            <DataGridTextColumn Header="更新时间" Binding="{Binding Updated}" IsReadOnly="True"/>
+                            <DataGridTextColumn Header="更新人" Binding="{Binding UpdatedBy}" IsReadOnly="True"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</win:HideCloseWindow>

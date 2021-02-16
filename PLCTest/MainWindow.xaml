@@ -1,0 +1,19 @@
+﻿<Window x:Class="PLCTest.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PLCTest"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Button x:Name="BtnRead" Click="BtnRead_Click" Content="读取" HorizontalAlignment="Left" Margin="74,59,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="BtnWrite" Click="BtnWrite_Click" Content="写入" HorizontalAlignment="Left" Margin="74,108,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="BtnConnect" Click="BtnConnect_Click" Content="连接" HorizontalAlignment="Left" Margin="218,59,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="BtnClose" Click="BtnClose_Click" Content="断开" HorizontalAlignment="Left" Margin="218,108,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="BtnOPCConnect" Click="BtnOPCConnect_Click" Content="OPC连接" HorizontalAlignment="Left" Margin="338,59,0,0" VerticalAlignment="Top" Width="75"/>
+
+        <Button x:Name="BtnPrinter" Click="BtnPrinter_Click" Content="打印机测试" HorizontalAlignment="Left" Margin="340,107,0,0" VerticalAlignment="Top" Width="75"/>
+
+    </Grid>
+</Window>

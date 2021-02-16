@@ -1,0 +1,98 @@
+﻿<UserControl x:Class="HHECS.Controls.TrussInfo"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" d:DesignHeight ="480"  d:DesignWidth="380" MaxWidth="380" MaxHeight="480" Padding="0" >
+    <UserControl.Resources>
+        <Style x:Key="labStyle" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource BaseTextBlockStyle}">
+            <Setter Property="Foreground" Value="Blue"/>
+            <Setter Property="Margin" Value="1,0,1,0"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="FontSize" Value="13"/>
+        </Style>
+        <Style x:Key="txtBlockStyle" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource BaseTextBlockStyle}">
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="Margin" Value="1,0,1,0"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="FontSize" Value="13"/>
+        </Style>
+        <Style TargetType="Button"  BasedOn="{StaticResource BaseButtonStyle}">
+            <Setter Property="FontSize" Value="13"></Setter>
+            <Setter Property="Margin" Value="2,0,0,0"/>
+        </Style>
+        <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+    </UserControl.Resources>
+    
+    <Grid Background="#FFEEEEEE">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20*"></ColumnDefinition>
+            <ColumnDefinition Width="20*"></ColumnDefinition>
+            <ColumnDefinition Width="20*"></ColumnDefinition>
+            <ColumnDefinition Width="20*"></ColumnDefinition>
+            <ColumnDefinition Width="20*"></ColumnDefinition>
+            <ColumnDefinition Width="27*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        
+        <TextBlock x:Name="lab_Name" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="6"  Style="{DynamicResource labStyle}" FontWeight="Bold" FontSize="18"  HorizontalAlignment="Center">桁车名</TextBlock>
+        <TextBlock Style="{DynamicResource txtBlockStyle}"  Grid.Row="1" Grid.Column="0" TextWrapping="Wrap" Text="是否有货" />
+        <TextBlock Style="{DynamicResource txtBlockStyle}"  Grid.Row="1" Grid.Column="2" TextWrapping="Wrap" Text="执行状态" />
+        <TextBlock Style="{DynamicResource txtBlockStyle}"  Grid.Row="2" Grid.Column="0" TextWrapping="Wrap" Text="任务类型" />
+        <TextBlock Style="{DynamicResource txtBlockStyle}"  Grid.Row="2" Grid.Column="2" TextWrapping="Wrap" Text="操作模式" />
+        <TextBlock Style="{DynamicResource txtBlockStyle}"  Grid.Row="2" Grid.Column="4" TextWrapping="Wrap" Text="任务号"/>
+        <TextBlock Style="{DynamicResource txtBlockStyle}"  Grid.Row="3" Grid.Column="0" TextWrapping="Wrap" Text="当前站台" />
+        <TextBlock Style="{DynamicResource txtBlockStyle}"  Grid.Row="3" Grid.Column="2" TextWrapping="Wrap" Text="任务开始"/>
+        <TextBlock Style="{DynamicResource txtBlockStyle}"  Grid.Row="3" Grid.Column="4" TextWrapping="Wrap" Text="任务结束"/>
+        <TextBlock Style="{DynamicResource txtBlockStyle}"  Grid.Row="4" Grid.Column="0" TextWrapping="Wrap" Text="大车测距" />
+        <TextBlock Style="{DynamicResource txtBlockStyle}"  Grid.Row="4" Grid.Column="2" TextWrapping="Wrap" Text="小车测距" />
+        <TextBlock Style="{DynamicResource txtBlockStyle}"  Grid.Row="4" Grid.Column="4" TextWrapping="Wrap" Text="升降测距" />
+        <TextBlock Style="{DynamicResource txtBlockStyle}"  Grid.Row="5" Grid.Column="0" TextWrapping="Wrap" Text="货叉中心" />
+        <TextBlock Style="{DynamicResource txtBlockStyle}"  Grid.Row="5" Grid.Column="2" TextWrapping="Wrap" Text="最小距离" />
+        <TextBlock Style="{DynamicResource txtBlockStyle}"  Grid.Row="5" Grid.Column="4" TextWrapping="Wrap" Text="最大距离" />
+        
+        <TextBlock x:Name="lab_Fork1ForkHasPallet" Style="{DynamicResource labStyle}"  Grid.Row="1" Grid.Column="1" Text="未获取" TextWrapping="Wrap" />
+        <TextBlock x:Name="lab_Fork1TaskExcuteStatus" Style="{DynamicResource labStyle}"  Grid.Row="1" Grid.Column="3" Text="未获取" TextWrapping="Wrap" Grid.ColumnSpan="3" />
+        <TextBlock x:Name="lab_OperationModel" Style="{DynamicResource labStyle}"  Grid.Row="2" Grid.Column="3" Text="未获取" TextWrapping="Wrap" />
+        <TextBlock x:Name="lab_Fork1TaskType" Style="{DynamicResource labStyle}"  Grid.Row="2" Grid.Column="1" Text="未获取" TextWrapping="Wrap"/>
+        <TextBlock x:Name="lab_CurrentStation" Style="{DynamicResource labStyle}"  Grid.Row="3" Grid.Column="1" Text="未获取" TextWrapping="Wrap"/>
+        <TextBlock x:Name="lab_HorizontalDistance" Style="{DynamicResource labStyle}"  Grid.Row="4" Grid.Column="1" Text="未获取" TextWrapping="Wrap" />
+        <TextBlock x:Name="lab_VerticalDistance" Style="{DynamicResource labStyle}"  Grid.Row="4" Grid.Column="3" Text="未获取" TextWrapping="Wrap" />
+        <TextBlock x:Name="lab_ForkDistance" Style="{DynamicResource labStyle}"  Grid.Row="4" Grid.Column="5" Text="未获取" TextWrapping="Wrap"/>
+        <TextBlock x:Name="lab_ForkCenter" Style="{DynamicResource labStyle}"  Grid.Row="5" Grid.Column="1" Text="未获取" TextWrapping="Wrap"/>
+        <TextBlock x:Name="lab_MinColumn" Style="{DynamicResource labStyle}"  Grid.Row="5" Grid.Column="3" Text="未获取" TextWrapping="Wrap"/>
+        <TextBlock x:Name="lab_MaxColumn" Style="{DynamicResource labStyle}"  Grid.Row="5" Grid.Column="5" Text="未获取" TextWrapping="Wrap"/>
+        <TextBlock x:Name="lab_Fork1TaskNo" Style="{DynamicResource labStyle}" Grid.Column="5" Text="未获取" TextWrapping="Wrap" Grid.ColumnSpan="1"  Grid.RowSpan="1" Grid.Row="2"/>
+        <TextBlock x:Name="lab_rowIndex2" Style="{DynamicResource labStyle}" Grid.Column="5" Text="未获取" TextWrapping="Wrap"  Grid.Row="3"/>
+        <TextBlock x:Name="lab_rowIndex1" Style="{DynamicResource labStyle}" Grid.Column="3" Text="未获取" TextWrapping="Wrap"  Grid.Row="3"/>
+        
+        <StackPanel Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="6" Orientation="Horizontal">
+            <Button x:Name="Btn_Delete"  Background="Red" Click="Btn_Delete_Click"   Content="删除任务"  HorizontalAlignment="Left"  VerticalAlignment="Top"  />
+            <Button x:Name="Btn_Override" Background="Yellow" Click="Btn_Override_Click"   Content="重新下发"  HorizontalAlignment="Left"  VerticalAlignment="Top"  />
+            <Button x:Name="Btn_EOut"  Background="Yellow" Click="Btn_EOut_Click" Content="空出"  HorizontalAlignment="Left"   VerticalAlignment="Top" Visibility="Collapsed"/>
+            <Button x:Name="Btn_DIn"  Background="Yellow"  Click="Btn_DIn_Click" Content="重入"  HorizontalAlignment="Center" VerticalAlignment="Top" Visibility="Collapsed"/>
+            <!--<Button x:Name="Btn_ForkError"  Background="Yellow"  Click="Btn_ForkError_Click"  Content="取货错误"  HorizontalAlignment="Right" VerticalAlignment="Top" Visibility="Hidden" />-->
+            <Button x:Name="Btn_Move"  Background="YellowGreen"  Click="Btn_Move_Click"  Content="移车任务"  HorizontalAlignment="Right" VerticalAlignment="Top"  />
+        </StackPanel>
+
+        <ListBox x:Name="list_Alarm" Grid.Column="0" Grid.ColumnSpan="6" Grid.Row="7">
+            <TextBlock Text="报警信息："></TextBlock>
+        </ListBox>
+        
+    </Grid>
+</UserControl>

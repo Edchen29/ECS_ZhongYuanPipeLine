@@ -1,0 +1,15 @@
+﻿<Window x:Class="HHECS.Controls.WinLocationInput"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="库位录入" Height="176.318" Width="547.612" FontSize="14px">
+    <Grid>
+        <TextBox x:Name="Txt_Location" HorizontalAlignment="Left" Height="23" Margin="81,55,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="389"/>
+        <Label x:Name="Lab_1" HorizontalAlignment="Left" Margin="25,23,0,0"  Content="请重新录入一个货位：" VerticalAlignment="Top"/>
+        <Button x:Name="Btn_Verify" Click="Btn_Verify_Click" Content="确认" HorizontalAlignment="Left" Margin="305,93,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="Btn_Cancel" Click="Btn_Cancel_Click" Content="取消" HorizontalAlignment="Left" Margin="395,93,0,0" VerticalAlignment="Top" Width="75"/>
+
+    </Grid>
+</Window>

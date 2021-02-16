@@ -1,0 +1,134 @@
+﻿<win:HideCloseWindow
+    xmlns:win="clr-namespace:HHECS.View.Win" x:Class="HHECS.View.CacheInfo.CacheMaterial"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HHECS.View.CacheInfo"
+    xmlns:convert="clr-namespace:HHECS.Model.ValueConverter;assembly=HHECS.Model"
+    xmlns:control="clr-namespace:HHECS.Model.Controls;assembly=HHECS.Model"
+        mc:Ignorable="d"
+        Title="缓存区物料管理" Height="450" Width="800">
+    <Window.Resources>
+        <convert:CutPlanStatusConverter x:Key="CutPlanStatusConverter"></convert:CutPlanStatusConverter>
+        <convert:CacheMaterialStatusConverter x:Key="CacheMaterialStatusConverter"></convert:CacheMaterialStatusConverter>
+        <convert:CommitFlagConverter x:Key="CommitFlagConverter"></convert:CommitFlagConverter>
+        <Style TargetType="StackPanel">
+            <Setter Property="Orientation" Value="Horizontal"></Setter>
+            <Setter Property="VerticalAlignment" Value="Center"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+            <Setter Property="Margin" Value="5"></Setter>
+        </Style>
+        <Style TargetType="Button" BasedOn="{StaticResource BaseButtonStyle}">
+            <Setter Property="Margin" Value="5,0,0,0"></Setter>
+        </Style>
+        <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}">
+            <Setter Property="Foreground" Value="Black"/>
+        </Style>
+        <Style TargetType="TextBox" BasedOn="{StaticResource BaseTextBoxStyle}">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Width" Value="100"/>
+        </Style>
+
+    </Window.Resources>
+    <Grid>
+        <TabControl>
+            <TabItem x:Name="CacheMaterialPanl" Header="缓存物料">
+                <Grid x:Name="GridMain">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <WrapPanel Grid.Row="0">
+                        <StackPanel>
+                            <TextBlock Text="工序跟踪ID："></TextBlock>
+                            <TextBox x:Name="txtStepTraceId" Width="100"></TextBox>
+                        </StackPanel>
+                        <StackPanel>
+                            <TextBlock Text="站台编码："></TextBlock>
+                            <ComboBox x:Name="cbxStation"  Width="135" Height="30"></ComboBox>
+                        </StackPanel>
+                    </WrapPanel>
+                    <StackPanel x:Name="SPMain" Grid.Row="1" HorizontalAlignment="Right">
+                        <Button Tag="cachematerial:query" x:Name="BtnQuery" Click="BtnQuery_Click">查询</Button>
+                        <Button Tag="cachematerial:viewdetails" x:Name="BtnViewDetail" Click="BtnViewDetail_Click">查看详细</Button>
+                        <Button Tag="cachematerial:add" x:Name="BtnAdd" Click="BtnAdd_Click">新增工位缓存</Button>
+                        <Button Tag="cachematerial:edit" x:Name="BtnEdit" Click="BtnEdit_Click">编辑工位缓存</Button>
+                        <Button Tag="cachematerial:delete" x:Name="BtnDelete" Click="BtnDelete_Click" >删除工位缓存</Button>
+                    </StackPanel>
+                    <DataGrid x:Name="DGMain" Grid.Row="2">
+                        <DataGrid.RowStyle>
+                            <Style TargetType="{x:Type DataGridRow}" BasedOn="{StaticResource BaseDataGridRowStyle}">
+                                <EventSetter Event="MouseDoubleClick" Handler="DataGridRow_MouseDoubleClick"/>
+                            </Style>
+                        </DataGrid.RowStyle>
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ID" Binding="{Binding Id}"/>
+                            <DataGridTextColumn Header="工序监控ID" Binding="{Binding stepTraceId}"/>
+                            <DataGridTextColumn Header="站台ID" Binding="{Binding StationId}"/>
+                            <DataGridTextColumn Header="站台编码" Binding="{Binding StationCodeVM.Name}"/>
+                            <DataGridTextColumn Header="物料类型" Binding="{Binding WcsProductType}"/>
+                            <DataGridTextColumn Header="物料长度" Binding="{Binding MaterialLength}"/>
+                            <DataGridTextColumn Header="物料壁厚" Binding="{Binding Thickness}"/>
+                            <DataGridTextColumn Header="物料外径" Binding="{Binding Diameter}"/>
+                            <DataGridTextColumn Header="状态" Binding="{Binding Status , Converter={StaticResource CacheMaterialStatusConverter}}"/>
+                            <DataGridTextColumn Header="创建时间" Binding="{Binding Created}"/>
+                            <DataGridTextColumn Header="创建人" Binding="{Binding CreatedBy}"/>
+                            <DataGridTextColumn Header="更新时间" Binding="{Binding Updated}"/>
+                            <DataGridTextColumn Header="更新人" Binding="{Binding UpdatedBy}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="TIDetail" Header="套料结果">
+                <Grid x:Name="GridDetail">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <WrapPanel Grid.Row="0">
+                        <StackPanel>
+                            <TextBlock>工单号：</TextBlock>
+                            <TextBox x:Name="TxtMainCode" IsReadOnly="False" Text="{Binding WONumber}"></TextBox>
+                        </StackPanel>
+                        <StackPanel>
+                            <TextBlock>原材料编码：</TextBlock>
+                            <TextBox x:Name="TxtMainId" IsReadOnly="False" Text="{Binding stationCacheId}"></TextBox>
+                        </StackPanel>
+
+                    </WrapPanel>
+
+                    <StackPanel x:Name="SPDetail" Grid.Row="1" HorizontalAlignment="Right">
+                        <Button Tag="cachematerial:Detailquery" x:Name="BtnUpdateDetail" Click="BtnUpdateDetail_Click">查询</Button>
+                        <Button Tag="cachematerial:Detailadd" x:Name="BtnAddDetail" Click="BtnAddDetail_Click">新增</Button>
+                        <Button Tag="cachematerial:Detailedit" x:Name="BtnEditDetial" Click="BtnEditDetial_Click">编辑</Button>
+                        <Button Tag="cachematerial:Detaildelete" x:Name="BtnDeleteDetail" Click="BtnDeleteDetail_Click">删除</Button>
+                    </StackPanel>
+                    <DataGrid x:Name="DGDetail" Grid.Row="2">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
+                            <DataGridTextColumn Header="工单编号" Binding="{Binding WONumber}"/>
+                            <DataGridTextColumn Header="原材料缓存位ID" Binding="{Binding stationCacheId}"/>
+                            <DataGridTextColumn Header="原材料类型" Binding="{Binding WcsProductType}"/>
+                            <DataGridTextColumn Header="原材料长度" Binding="{Binding MaterialLength}"/>
+                            <DataGridTextColumn Header="原材料壁厚" Binding="{Binding Thickness}"/>
+                            <DataGridTextColumn Header="原材料外径" Binding="{Binding Diameter}"/>
+                            <DataGridTextColumn Header="要切的小段的长度ID" Binding="{Binding Length}"/>
+                            <DataGridTextColumn Header="状态" Binding="{Binding Status , Converter={StaticResource CutPlanStatusConverter}}"/>
+
+                            <DataGridTextColumn Header="创建者" Binding="{Binding CreateBy}"/>
+                            <DataGridTextColumn Header="创建时间" Binding="{Binding CreateTime}"/>
+                            <DataGridTextColumn Header="更新人" Binding="{Binding UpdateBy}"/>
+                            <DataGridTextColumn Header="更新时间" Binding="{Binding UpdateTime}"/>
+
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+        </TabControl>
+
+    </Grid>
+</win:HideCloseWindow>

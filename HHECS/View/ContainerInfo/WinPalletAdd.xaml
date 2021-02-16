@@ -1,0 +1,89 @@
+﻿<win:HideCloseWindow
+    xmlns:win="clr-namespace:HHECS.View.Win"
+    x:Class="HHECS.View.ContainerInfo.WinPalletAdd"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:HHECS.View.ContainerInfo"
+             mc:Ignorable="d" 
+            Title="容器新增" Height="150" Width="450" ResizeMode="NoResize" SizeToContent="WidthAndHeight">
+    <Window.Resources>
+        <Style TargetType="StackPanel">
+            <Setter Property="Orientation" Value="Horizontal"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+        <Style TargetType="ComboBox" BasedOn="{StaticResource BaseComboBoxStyle}">
+            <Setter Property="Width" Value="125"></Setter>
+            <Setter Property="Height" Value="25"></Setter>
+            <Setter Property="Background" Value="White"></Setter>
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+        <Style TargetType="TextBox" BasedOn="{StaticResource BaseTextBoxStyle}">
+            <Setter Property="Width" Value="125"></Setter>
+            <Setter Property="Margin" Value="5"></Setter>
+        </Style>
+    </Window.Resources>
+    <TabControl>
+        <TabItem Header="单个增加">
+            <Grid x:Name="Grid1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                <StackPanel>
+                    <TextBlock>容器编码：</TextBlock>
+                    <TextBox x:Name="Txt_PalletNum" ></TextBox>
+                    <TextBlock>托盘类型：</TextBlock>
+                    <ComboBox x:Name="ComboBox_PalletType"></ComboBox>
+                </StackPanel>
+                <StackPanel Grid.Row="1">
+                    <TextBlock>托盘状态：</TextBlock>
+                    <ComboBox x:Name="ComboBox_PalletStatus" Width="125"></ComboBox>
+                    <TextBlock>仓库位置：</TextBlock>
+                    <ComboBox x:Name="ComboBox_WarehouseCode"></ComboBox>
+                </StackPanel>
+                <StackPanel Grid.Row="3" HorizontalAlignment="Right">
+                    <Button Click="Btn_Confrilm_Click">确认新增</Button>
+                    <Button Click="Btn_Cancel_Click">取消</Button>
+                </StackPanel>
+            </Grid>
+        </TabItem>
+        <TabItem Header="批量增加">
+            <Grid x:Name="Grid2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0">
+                    <TextBlock>前缀：</TextBlock>
+                    <TextBox x:Name="Txt_VolumePrefix" Width="50"></TextBox>
+                    <TextBlock>起始位：</TextBlock>
+                    <TextBox x:Name="Txt_VolumeStartBit"></TextBox>
+                    <TextBlock>结束位：</TextBlock>
+                    <TextBox x:Name="Txt_VolumeEndBit"></TextBox>
+                    <TextBlock>位数：</TextBlock>
+                    <TextBox x:Name="Txt_VolumePrefixNum" Width="33"></TextBox>
+                </StackPanel>
+                <StackPanel Grid.Row="1">
+                    <TextBlock>托盘状态：</TextBlock>
+                    <ComboBox Name="Cbx_VolumeStatus"></ComboBox>
+                    <TextBlock>托盘类型：</TextBlock>
+                    <ComboBox x:Name="Cbx_VolumePalletType"></ComboBox>
+                    <TextBlock>仓库：</TextBlock>
+                    <ComboBox x:Name="Cbx_VolumeaWarehouseCode"></ComboBox>
+                </StackPanel>
+                <StackPanel Grid.Row="2" HorizontalAlignment="Right">
+                    <Button x:Name="Btn_VolumeAdd" Click="Btn_VolumeAdd_Click">确定</Button>
+                    <Button x:Name="Btn_VolumeCancel" Click="Btn_Cancel_Click">取消</Button>
+                </StackPanel>
+                
+            </Grid>
+        </TabItem>
+    </TabControl>
+
+</win:HideCloseWindow>

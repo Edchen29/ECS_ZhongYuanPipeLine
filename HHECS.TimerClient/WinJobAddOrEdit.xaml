@@ -1,0 +1,86 @@
+﻿<mah:MetroWindow
+    xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+    x:Class="HHECS.TimerClient.WinJobAddOrEdit"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HHECS.TimerClient"
+        mc:Ignorable="d"
+        Title="WinJobAddOrEdit" Height="243.6" Width="448.8" ResizeMode="NoResize">
+    <Window.Resources>
+        <Style TargetType="StackPanel">
+            <Setter Property="Orientation" Value="Horizontal"/>
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="0,0,20,0"/>
+        </Style>
+        <Style TargetType="TextBlock" BasedOn="{StaticResource MetroTextBlock}">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+        <Style TargetType="TextBox" BasedOn="{StaticResource MetroTextBox}">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Width" Value="100"/>
+        </Style>
+    </Window.Resources>
+    <Grid x:Name="GridMain">
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Row="0" Grid.Column="0">
+            <TextBlock>Id：</TextBlock>
+            <TextBox x:Name ="TxtId" Text="{Binding Id}" IsReadOnly="True"></TextBox>
+        </StackPanel>
+        <StackPanel Grid.Row="0" Grid.Column="1">
+            <TextBlock>计划名：</TextBlock>
+            <TextBox x:Name ="TxtPartMaterialCode" Text="{Binding Name}"></TextBox>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Grid.Column="0">
+            <TextBlock>Url：</TextBlock>
+            <TextBox Text="{Binding Url}" ></TextBox>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.Column="1">
+            <TextBlock>Api：</TextBlock>
+            <TextBox  Text="{Binding Api}"></TextBox>
+        </StackPanel>
+
+        <StackPanel Grid.Row="2" Grid.Column="0">
+            <TextBlock>corn表达式：</TextBlock>
+            <TextBox  Text="{Binding Corn}"></TextBox>
+        </StackPanel>
+        <StackPanel Grid.Row="2" Grid.Column="1">
+            <TextBlock>corn排除表达式：</TextBlock>
+            <TextBox  Text="{Binding ExcludesCorn}"></TextBox>
+        </StackPanel>
+
+        <StackPanel Grid.Row="3" Grid.Column="0">
+            <TextBlock>状态：</TextBlock>
+            <ComboBox x:Name="CBStatus"  SelectedValue="{Binding Status}" Width="100"></ComboBox>
+        </StackPanel>
+        
+        <StackPanel Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2">
+            <TextBlock>参数：</TextBlock>
+            <TextBox Text="{Binding Param}"  Width="321"></TextBox>
+        </StackPanel>
+
+
+
+        <StackPanel HorizontalAlignment="Right" Grid.Row="5" Grid.ColumnSpan="2">
+            <Button x:Name="BtnSave" Click="BtnSave_Click">保存</Button>
+            <Button x:Name="BtnCancel" Click="BtnCancel_Click">取消</Button>
+        </StackPanel>
+    </Grid>
+</mah:MetroWindow>
